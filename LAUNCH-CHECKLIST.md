@@ -28,8 +28,8 @@ on you, search the project for `[` to find them all.
 - [ ] If you add analytics, update the cookies/analytics line in `privacy.html` and consider a simple consent banner.
 
 ## 6. Brand assets
-- [ ] **Optimized share image**, `assets/kmm-logo.png` works as the Open Graph image but is ~2 MB. Export a 1200×630 version (under ~200 KB) for faster, cleaner social cards.
-- [ ] **apple-touch-icon**, add a 180×180 PNG (`assets/apple-touch-icon.png`) and link it in each page `<head>` for iOS home-screen bookmarks. The SVG favicon already covers browsers.
+- [x] **Optimized share image** (done). `assets/og-image.jpg` (1200x630, about 48 KB) is generated from the logo and wired into every page's Open Graph and Twitter tags.
+- [x] **apple-touch-icon** (done). `assets/apple-touch-icon.png` (180x180) is generated and linked in every page head. The SVG favicon covers browsers.
 
 ## 7. Legal
 - [ ] Have an attorney review `privacy.html` (privacy policy + disclaimer) before publishing.

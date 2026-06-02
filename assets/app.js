@@ -172,6 +172,29 @@
     });
   })();
 
+  /* ---------- Lead-magnet gate (year-end checklist) ---------- */
+  (function () {
+    var gate = document.getElementById("checklistGate");
+    var content = document.getElementById("checklistContent");
+    var form = document.getElementById("checklistForm");
+    if (!gate || !content || !form) return;
+    gate.hidden = false;
+    content.hidden = true;
+    var reveal = function () {
+      gate.hidden = true;
+      content.hidden = false;
+      content.scrollIntoView({ block: "start" });
+    };
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var action = form.getAttribute("action") || "";
+      if (action === "" || action.indexOf("REPLACE_WITH_FORM_ID") !== -1) { reveal(); return; }
+      fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function () { reveal(); })
+        .catch(function () { reveal(); });
+    });
+  })();
+
   /* ---------- Footer year ---------- */
   (function () {
     var y = document.getElementById("year");
