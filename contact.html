@@ -129,6 +129,29 @@
               <option value="klein-realestate">Klein Real Estate (Real Estate Taxes)</option>
             </select>
           </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="client_status">New or existing client?</label>
+              <select id="client_status" name="client_status" required>
+                <option value="">Select one</option>
+                <option value="new">New client</option>
+                <option value="existing">Existing client</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="client_type">This is for</label>
+              <select id="client_type" name="client_type">
+                <option value="">Select (optional)</option>
+                <option value="individual">An individual / family</option>
+                <option value="business">A business</option>
+                <option value="trust-estate">A trust or estate</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="referral">How did you hear about us? (optional)</label>
+            <input type="text" id="referral" name="referral" placeholder="Referral, Google, social media, etc.">
+          </div>
           <div class="field">
             <label for="message">How can we help?</label>
             <textarea id="message" name="message" required></textarea>
