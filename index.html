@@ -3,766 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMM Tax Group</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f4efe4'/%3E%3Ccircle cx='8.5' cy='9' r='2' fill='%23b08f4f'/%3E%3Ccircle cx='8.5' cy='16' r='2' fill='%23b08f4f'/%3E%3Ccircle cx='8.5' cy='23' r='2' fill='%23b08f4f'/%3E%3Ctext x='14' y='24' font-family='Georgia, serif' font-size='19' font-weight='700' fill='%230c3a1e'%3EK%3C/text%3E%3C/svg%3E">
-<meta name="description" content="KMM Tax Group is a multi-division tax firm: Klein Muskat for personal tax, trusts, and estates; Klein Mirsky for business tax and bookkeeping; and Klein Real Estate for real estate taxes.">
+<title>KMM Tax Group | Personal, Business &amp; Real Estate Tax Specialists</title>
+<meta name="description" content="KMM Tax Group is a multi-division tax firm: Klein Muskat for personal tax, trusts and estates; Klein Mirsky for business tax and bookkeeping; and Klein Real Estate for real estate taxes. Specialists, not generalists.">
+<meta name="robots" content="index, follow">
+<!-- TODO: replace www.kmmtaxgroup.com with your real domain in canonical / og:url / og:image and in sitemap.xml + robots.txt -->
+<link rel="canonical" href="https://www.kmmtaxgroup.com/">
 
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KMM Tax Group">
+<meta property="og:title" content="KMM Tax Group | Personal, Business &amp; Real Estate Tax Specialists">
+<meta property="og:description" content="Three disciplines of tax, kept under one roof — individuals and estates, growing businesses, and real estate.">
+<meta property="og:url" content="https://www.kmmtaxgroup.com/">
+<meta property="og:image" content="https://www.kmmtaxgroup.com/assets/kmm-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KMM Tax Group">
+<meta name="twitter:description" content="A multi-division tax firm: personal, business, and real estate tax — each handled by a dedicated practice.">
+<meta name="twitter:image" content="https://www.kmmtaxgroup.com/assets/kmm-logo.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f4efe4'/%3E%3Ccircle cx='8.5' cy='9' r='2' fill='%23b08f4f'/%3E%3Ccircle cx='8.5' cy='16' r='2' fill='%23b08f4f'/%3E%3Ccircle cx='8.5' cy='23' r='2' fill='%23b08f4f'/%3E%3Ctext x='14' y='24' font-family='Georgia, serif' font-size='19' font-weight='700' fill='%230c3a1e'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 
-<style>
-  /* ============================================================
-     KMM TAX GROUP
-     Single-file prototype. Each division is its own "page"
-     (hash route). Easy to split into real routes in Replit.
-     ============================================================ */
-
-  :root {
-    /* Brand palette */
-    --ink:        #16241c;   /* deep evergreen-charcoal, primary text */
-    --evergreen:  #0c3a1e;   /* primary brand green, sampled from logo */
-    --paper:      #f4efe4;   /* warm ivory background */
-    --paper-2:    #ece4d3;   /* deeper panel tone */
-    --paper-3:    #e4dac6;   /* deepest panel tone */
-    --muted:      #6c776e;   /* secondary text */
-    --line:       rgba(27, 42, 36, 0.16);
-    --line-soft:  rgba(27, 42, 36, 0.09);
-
-    /* Division accents */
-    --brass:      #b08f4f;   /* brass/gold from logo, Klein Muskat accent */
-    --teal:       #245b54;   /* Klein Mirsky */
-    --sienna:     #a85a3c;   /* Klein Real Estate */
-
-    /* Default accent (parent / group) */
-    --accent:     var(--brass);
-
-    --serif: "Fraunces", Georgia, serif;
-    --sans:  "Hanken Grotesk", system-ui, sans-serif;
-    --mono:  "Spline Sans Mono", ui-monospace, monospace;
-
-    --maxw: 1180px;
-    --pad: clamp(1.25rem, 4vw, 3.5rem);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background-color: var(--paper);
-    color: var(--ink);
-    line-height: 1.6;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(120% 80% at 80% -10%, rgba(31,64,49,0.06), transparent 60%),
-      radial-gradient(90% 70% at -10% 110%, rgba(169,134,63,0.07), transparent 55%);
-  }
-
-  /* Fine paper grain overlay */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  ::selection { background: var(--evergreen); color: var(--paper); }
-
-  a { color: inherit; text-decoration: none; }
-
-  .wrap {
-    width: 100%;
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding-left: var(--pad);
-    padding-right: var(--pad);
-  }
-
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.6rem;
-    height: 1px;
-    background: var(--accent);
-    display: inline-block;
-  }
-
-  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.04; letter-spacing: -0.015em; }
-
-  /* ---------------- NAV ---------------- */
-  header.nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(244, 239, 228, 0.82);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 74px;
-  }
-  /* Brand logo lockup (KMM) */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .logo-dots { display: flex; flex-direction: column; gap: 4px; }
-  .logo-dots i {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--brass);
-    display: block;
-  }
-  .logo-type { display: flex; flex-direction: column; line-height: 1; }
-  .logo-name {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 0.9;
-    letter-spacing: 0.005em;
-    color: var(--evergreen);
-    font-variation-settings: "opsz" 40;
-  }
-  .logo-rule {
-    height: 2px;
-    background: var(--brass);
-    width: 100%;
-    margin: 4px 0;
-  }
-  .logo-sub {
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 0.6rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--evergreen);
-    padding-left: 0.04em;
-  }
-  .logo--light .logo-name,
-  .logo--light .logo-sub { color: var(--paper); }
-  nav.links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  nav.links a {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    position: relative;
-    padding: 0.4rem 0;
-    transition: color 0.25s ease;
-  }
-  nav.links a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -2px;
-    width: 0; height: 1px;
-    background: var(--evergreen);
-    transition: width 0.3s ease;
-  }
-  nav.links a:hover { color: var(--ink); }
-  nav.links a:hover::after { width: 100%; }
-  nav.links a.active { color: var(--ink); }
-  nav.links a.active::after { width: 100%; background: var(--accent); }
-
-  .nav-cta {
-    border: 1px solid var(--evergreen);
-    border-radius: 100px;
-    padding: 0.55rem 1.2rem !important;
-    color: var(--evergreen) !important;
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-  .nav-cta::after { display: none; }
-  .nav-cta:hover { background: var(--evergreen); color: var(--paper) !important; }
-
-  /* Client login dropdown */
-  .has-dropdown { position: relative; display: flex; align-items: center; }
-  .dropdown-trigger {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: none; border: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.4rem 0;
-    transition: color 0.25s ease;
-  }
-  .dropdown-trigger:hover,
-  .has-dropdown.open .dropdown-trigger { color: var(--ink); }
-  .dropdown-trigger .caret { font-size: 0.55rem; transition: transform 0.25s ease; }
-  .has-dropdown.open .dropdown-trigger .caret { transform: rotate(180deg); }
-  .dropdown-menu {
-    position: absolute;
-    top: calc(100% + 14px);
-    right: 0;
-    min-width: 250px;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 24px 50px rgba(12, 58, 30, 0.13);
-    padding: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-    z-index: 200;
-  }
-  .has-dropdown:hover .dropdown-menu,
-  .has-dropdown.open .dropdown-menu {
-    opacity: 1; visibility: visible; transform: translateY(0);
-  }
-  .dropdown-menu a {
-    display: flex; flex-direction: column; gap: 0.15rem;
-    padding: 0.7rem 0.85rem;
-    border-radius: 8px;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--ink);
-    transition: background 0.2s ease;
-  }
-  .dropdown-menu a::after { display: none; }
-  .dropdown-menu a:hover { background: var(--paper-2); color: var(--ink); }
-  .dropdown-menu .dd-sub {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .dropdown-menu a.is-disabled { color: var(--muted); cursor: default; opacity: 0.7; }
-  .dropdown-menu a.is-disabled:hover { background: none; }
-
-  /* Outlined button (client login on division pages) */
-  .btn-line {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.9rem 1.6rem; border-radius: 100px;
-    background: transparent; color: var(--accent); border: 1px solid var(--accent);
-    cursor: pointer; transition: background 0.25s ease, color 0.25s ease;
-  }
-  .btn-line svg { width: 14px; height: 14px; }
-  .btn-line:hover { background: var(--accent); color: var(--paper); }
-  .btn-line.is-disabled { color: var(--muted); border-color: var(--line); cursor: default; }
-  .btn-line.is-disabled:hover { background: transparent; color: var(--muted); }
-  .dhero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; margin-top: 1.9rem; }
-  .dhero-actions .pending-note {
-    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--accent);
-  }
-
-  .menu-toggle {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    width: 40px; height: 40px;
-    flex-direction: column; justify-content: center; gap: 5px;
-  }
-  .menu-toggle span {
-    display: block; height: 1.5px; width: 22px;
-    background: var(--ink); transition: 0.3s ease;
-  }
-
-  /* ---------------- PAGE SYSTEM ---------------- */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .page.active .reveal {
-    opacity: 0;
-    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  }
-  .page.active .reveal.d1 { animation-delay: 0.05s; }
-  .page.active .reveal.d2 { animation-delay: 0.17s; }
-  .page.active .reveal.d3 { animation-delay: 0.29s; }
-  .page.active .reveal.d4 { animation-delay: 0.41s; }
-  .page.active .reveal.d5 { animation-delay: 0.53s; }
-
-  /* ---------------- HERO (home) ---------------- */
-  .hero {
-    position: relative;
-    padding: clamp(3.5rem, 9vw, 7.5rem) 0 clamp(3rem, 7vw, 5.5rem);
-    overflow: hidden;
-  }
-  /* ledger columns motif */
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0; right: 0; bottom: 0;
-    width: 42%;
-    background-image: repeating-linear-gradient(
-      to right,
-      transparent 0, transparent 76px,
-      var(--line-soft) 76px, var(--line-soft) 77px
-    );
-    -webkit-mask-image: linear-gradient(to left, black, transparent);
-    mask-image: linear-gradient(to left, black, transparent);
-    opacity: 0.8;
-    pointer-events: none;
-  }
-  .hero-mono {
-    position: absolute;
-    top: clamp(2rem, 6vw, 4rem); right: var(--pad);
-    font-family: var(--serif);
-    font-size: clamp(8rem, 22vw, 18rem);
-    line-height: 0.8;
-    color: var(--evergreen);
-    opacity: 0.06;
-    font-weight: 600;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 880px; }
-  .hero h1 {
-    font-size: clamp(2.7rem, 7vw, 5.4rem);
-    font-variation-settings: "opsz" 144;
-    margin: 1.6rem 0 0;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--evergreen);
-    font-weight: 500;
-  }
-  .hero .lede {
-    font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-    color: var(--muted);
-    max-width: 560px;
-    margin-top: 1.8rem;
-  }
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.4rem;
-    margin-top: 2.6rem;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.95rem 1.7rem;
-    border-radius: 100px;
-    background: var(--evergreen);
-    color: var(--paper);
-    border: 1px solid var(--evergreen);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s ease;
-  }
-  .btn span { position: relative; z-index: 1; }
-  .btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--ink);
-    transform: translateY(101%);
-    transition: transform 0.35s cubic-bezier(0.3,0.7,0.2,1);
-  }
-  .btn:hover::before { transform: translateY(0); }
-  .btn:hover { transform: translateY(-2px); }
-
-  .btn-ghost {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    cursor: pointer;
-    background: none; border: none;
-  }
-  .btn-ghost .arrow { transition: transform 0.3s ease; }
-  .btn-ghost:hover .arrow { transform: translateX(5px); }
-
-  /* ---------------- DIVISIONS INDEX ---------------- */
-  .section { padding: clamp(3rem, 7vw, 6rem) 0; }
-  .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
-    padding-bottom: 2.2rem;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 0.5rem;
-  }
-  .section-head h2 {
-    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-    font-variation-settings: "opsz" 80;
-  }
-  .section-head p { color: var(--muted); max-width: 360px; font-size: 0.98rem; }
-
-  .ledger { border-top: 1px solid var(--line); }
-  .entry {
-    display: grid;
-    grid-template-columns: 5rem 1fr auto;
-    gap: clamp(1rem, 4vw, 3rem);
-    align-items: center;
-    padding: clamp(1.8rem, 3.5vw, 2.6rem) 0;
-    border-bottom: 1px solid var(--line);
-    cursor: pointer;
-    position: relative;
-    transition: padding-left 0.35s ease;
-  }
-  .entry::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0;
-    width: 0; height: 2px;
-    background: var(--ea, var(--evergreen));
-    transition: width 0.4s cubic-bezier(0.3,0.7,0.2,1);
-  }
-  .entry:hover { padding-left: 1.2rem; }
-  .entry:hover::before { width: 100%; }
-  .entry .idx {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    transition: color 0.3s ease;
-  }
-  .entry:hover .idx { color: var(--ea, var(--evergreen)); }
-  .entry-body h3 {
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
-    font-variation-settings: "opsz" 60;
-    margin-bottom: 0.35rem;
-  }
-  .entry-body .role {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ea, var(--evergreen));
-    display: block;
-    margin-bottom: 0.7rem;
-  }
-  .entry-body p { color: var(--muted); max-width: 520px; font-size: 0.97rem; }
-  .entry .go {
-    font-family: var(--mono);
-    font-size: 1.4rem;
-    color: var(--ink);
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  .entry:hover .go { transform: translateX(6px); color: var(--ea, var(--evergreen)); }
-
-  .entry[data-accent="brass"]  { --ea: var(--brass); }
-  .entry[data-accent="teal"]   { --ea: var(--teal); }
-  .entry[data-accent="sienna"] { --ea: var(--sienna); }
-
-  /* ---------------- VALUES STRIP ---------------- */
-  .values {
-    background: var(--evergreen);
-    color: var(--paper);
-    margin-top: clamp(2rem, 5vw, 4rem);
-  }
-  .values .wrap { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
-  }
-  .value .num {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    color: var(--brass);
-    display: block;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(244,239,228,0.18);
-  }
-  .value h4 {
-    font-family: var(--serif);
-    font-size: 1.45rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-  }
-  .value p { color: rgba(244,239,228,0.7); font-size: 0.96rem; }
-
-  /* ---------------- DIVISION PAGES ---------------- */
-  .crumb {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding-top: clamp(2rem, 5vw, 3.2rem);
-    display: inline-flex;
-    gap: 0.55rem;
-  }
-  .crumb a:hover { color: var(--ink); }
-  .crumb .sep { color: var(--line); }
-
-  .dhero { padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2.5rem, 6vw, 4rem); }
-  .dhero h1 {
-    font-size: clamp(2.4rem, 6vw, 4.6rem);
-    font-variation-settings: "opsz" 144;
-    margin: 1.2rem 0 0;
-    max-width: 14ch;
-  }
-  .dhero .lede {
-    font-size: clamp(1.02rem, 1.6vw, 1.25rem);
-    color: var(--muted);
-    max-width: 600px;
-    margin-top: 1.6rem;
-  }
-
-  .dbody {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: clamp(2.5rem, 6vw, 5rem);
-    padding: clamp(2.5rem, 6vw, 4.5rem) 0;
-    border-top: 1px solid var(--line);
-  }
-  .dbody .col-label h2 {
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-variation-settings: "opsz" 60;
-    position: sticky;
-    top: 110px;
-  }
-  .dbody .col-label .tag {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.9rem;
-  }
-  .svc-list { list-style: none; }
-  .svc-list li {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 1.2rem;
-    padding: 1.3rem 0;
-    border-bottom: 1px solid var(--line);
-    align-items: baseline;
-  }
-  .svc-list li:first-child { border-top: 1px solid var(--line); }
-  .svc-list .n {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-  }
-  .svc-list .t { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--ink); }
-  .svc-list .desc { display: block; font-family: var(--sans); font-size: 0.92rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5; }
-
-  .dcta {
-    background: var(--paper-2);
-    border-top: 1px solid var(--line);
-  }
-  .dcta .wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    padding-top: clamp(2.5rem, 5vw, 3.5rem);
-    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
-  }
-  .dcta h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-variation-settings: "opsz" 60; }
-  .dcta p { color: var(--muted); margin-top: 0.4rem; }
-
-  /* accent scoping per division page */
-  #klein-muskat { --accent: var(--brass); }
-  #klein-mirsky { --accent: var(--teal); }
-  #klein-realestate { --accent: var(--sienna); }
-
-  /* ---------------- CONTACT ---------------- */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: clamp(2.5rem, 6vw, 5rem);
-    padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 7vw, 5rem);
-  }
-  .contact-intro h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    font-variation-settings: "opsz" 120;
-    margin: 1.2rem 0 1.4rem;
-  }
-  .contact-intro p { color: var(--muted); max-width: 420px; margin-bottom: 2.4rem; }
-  .info-row {
-    display: flex;
-    gap: 1.2rem;
-    padding: 1.1rem 0;
-    border-top: 1px solid var(--line);
-    align-items: baseline;
-  }
-  .info-row .k {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    min-width: 5.5rem;
-  }
-  .info-row .v { font-size: 1rem; color: var(--ink); }
-  .placeholder { color: var(--accent); font-style: italic; }
-
-  form .field { margin-bottom: 1.5rem; }
-  form label {
-    display: block;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.55rem;
-  }
-  form input, form select, form textarea {
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 1rem;
-    color: var(--ink);
-    background: rgba(255,255,255,0.4);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 0.9rem 1rem;
-    transition: border-color 0.25s ease, background 0.25s ease;
-  }
-  form textarea { resize: vertical; min-height: 130px; }
-  form input:focus, form select:focus, form textarea:focus {
-    outline: none;
-    border-color: var(--evergreen);
-    background: rgba(255,255,255,0.7);
-  }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-  form .btn { margin-top: 0.5rem; width: auto; }
-
-  .form-success {
-    display: none;
-    border: 1px solid var(--evergreen);
-    border-radius: 10px;
-    padding: 2rem;
-    background: rgba(31,64,49,0.05);
-  }
-  .form-success.show { display: block; animation: rise 0.6s ease forwards; }
-  .form-success h3 { font-size: 1.5rem; margin-bottom: 0.6rem; color: var(--evergreen); }
-  .form-success p { color: var(--muted); }
-
-  /* ---------------- FOOTER ---------------- */
-  footer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
-    margin-top: auto;
-  }
-  .foot-top {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(244,239,228,0.14);
-  }
-  .foot-brand .logo-name { font-size: 1.7rem; }
-  .foot-brand p { color: rgba(244,239,228,0.6); font-size: 0.92rem; margin-top: 1rem; max-width: 280px; }
-  .foot-col h5 {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 1.2rem;
-    font-weight: 500;
-  }
-  .foot-col ul { list-style: none; }
-  .foot-col li { margin-bottom: 0.9rem; }
-  .foot-col a { color: rgba(244,239,228,0.78); font-size: 0.95rem; transition: color 0.2s ease; }
-  .foot-col a:hover { color: var(--paper); }
-  .foot-col .sub { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,239,228,0.4); margin-top: 0.2rem; }
-  .foot-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    padding-top: 2rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    color: rgba(244,239,228,0.5);
-  }
-
-  /* ---------------- RESPONSIVE ---------------- */
-  @media (max-width: 860px) {
-    .menu-toggle { display: flex; }
-    nav.links {
-      position: fixed;
-      inset: 74px 0 auto 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      background: var(--paper);
-      border-bottom: 1px solid var(--line);
-      padding: 1rem var(--pad) 2rem;
-      transform: translateY(-120%);
-      transition: transform 0.4s cubic-bezier(0.3,0.7,0.2,1);
-      box-shadow: 0 20px 40px rgba(27,42,36,0.08);
-    }
-    nav.links.open { transform: translateY(0); }
-    nav.links a { width: 100%; padding: 1rem 0; border-bottom: 1px solid var(--line-soft); font-size: 0.85rem; }
-    .has-dropdown { width: 100%; flex-direction: column; align-items: flex-start; }
-    .dropdown-trigger { width: 100%; padding: 1rem 0; border-bottom: 1px solid var(--line-soft); font-size: 0.85rem; justify-content: space-between; }
-    .dropdown-trigger .caret { display: none; }
-    .dropdown-menu {
-      position: static; opacity: 1; visibility: visible; transform: none;
-      box-shadow: none; border: none; border-radius: 0; background: transparent;
-      min-width: 0; width: 100%; padding: 0.25rem 0 0.6rem 0.75rem;
-    }
-    .dropdown-menu a { padding: 0.7rem 0; border-bottom: none; }
-    .nav-cta { margin-top: 1rem; }
-    .values-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .dbody { grid-template-columns: 1fr; }
-    .dbody .col-label h2 { position: static; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .foot-top { grid-template-columns: 1fr; gap: 2rem; }
-    .field-row { grid-template-columns: 1fr; }
-    .entry { grid-template-columns: 3rem 1fr auto; }
-  }
-</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "KMM Tax Group",
+  "description": "A multi-division tax firm serving individuals, businesses, and real estate investors.",
+  "url": "https://www.kmmtaxgroup.com/",
+  "image": "https://www.kmmtaxgroup.com/assets/kmm-logo.png",
+  "telephone": "[ add phone ]",
+  "email": "[ add email ]",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[ add street ]",
+    "addressLocality": "[ add city ]",
+    "addressRegion": "[ add state ]",
+    "postalCode": "[ add zip ]",
+    "addressCountry": "US"
+  },
+  "areaServed": "[ add region ]",
+  "department": [
+    { "@type": "AccountingService", "name": "Klein Muskat", "description": "Personal income tax, trusts, and estates.", "url": "https://www.kmmtaxgroup.com/klein-muskat.html" },
+    { "@type": "AccountingService", "name": "Klein Mirsky", "description": "Business tax and year-round bookkeeping.", "url": "https://www.kmmtaxgroup.com/klein-mirsky.html" },
+    { "@type": "AccountingService", "name": "Klein Real Estate", "description": "Tax for investors, partnerships, and property entities.", "url": "https://www.kmmtaxgroup.com/klein-realestate.html" }
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ======================= NAV ======================= -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="#home" class="logo" data-nav aria-label="KMM Tax Group home">
+    <a href="index.html" class="logo" aria-label="KMM Tax Group home">
       <span class="logo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="logo-type">
         <span class="logo-name">KMM</span>
@@ -770,13 +67,14 @@
         <span class="logo-sub">Tax Group</span>
       </span>
     </a>
-    <button class="menu-toggle" aria-label="Menu" id="menuToggle">
+    <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
       <span></span><span></span><span></span>
     </button>
     <nav class="links" id="navLinks">
-      <a href="#klein-muskat" data-nav>Klein Muskat</a>
-      <a href="#klein-mirsky" data-nav>Klein Mirsky</a>
-      <a href="#klein-realestate" data-nav>Klein Real Estate</a>
+      <a href="klein-muskat.html">Klein Muskat</a>
+      <a href="klein-mirsky.html">Klein Mirsky</a>
+      <a href="klein-realestate.html">Klein Real Estate</a>
+      <a href="about.html">About</a>
       <div class="has-dropdown">
         <button class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Client Login <span class="caret" aria-hidden="true">&#9662;</span></button>
         <div class="dropdown-menu">
@@ -785,284 +83,197 @@
           <a class="is-disabled" aria-disabled="true">Klein Real Estate<span class="dd-sub">Portal coming soon</span></a>
         </div>
       </div>
-      <a href="#contact" class="nav-cta" data-nav>Contact</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 
-<!-- ======================= HOME ======================= -->
-<section id="home" class="page active">
-  <div class="hero">
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
     <div class="hero-mono" aria-hidden="true">K</div>
     <div class="wrap hero-content">
       <span class="eyebrow reveal d1">A multi-division tax firm</span>
       <h1 class="reveal d2">Three disciplines of tax,<br>kept under <em>one roof.</em></h1>
       <p class="lede reveal d3">KMM Tax Group brings together three specialized practices: individuals and estates, growing businesses, and real estate. Each is run with the depth of a dedicated firm and the resources of a group.</p>
       <div class="hero-actions reveal d4">
-        <button class="btn" data-nav data-href="#contact"><span>Start a conversation</span></button>
-        <button class="btn-ghost" id="exploreBtn">View our divisions <span class="arrow">&rarr;</span></button>
+        <a class="btn" href="contact.html"><span>Book a consultation</span></a>
+        <a class="btn-ghost" href="#divisions">View our divisions <span class="arrow">&rarr;</span></a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section" id="divisions">
+  <!-- ======================= TRUST BAR ======================= -->
+  <section class="trustbar">
     <div class="wrap">
-      <div class="section-head">
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>Licensed CPAs, EAs &amp; tax attorneys</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/></svg>Three specialized divisions</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure TaxDome client portals</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="placeholder">[ Serving [region] since [year] ]</span></span>
+    </div>
+  </section>
+
+  <!-- ======================= DIVISIONS ======================= -->
+  <section class="section" id="divisions">
+    <div class="wrap">
+      <div class="section-head reveal">
         <h2>Our divisions</h2>
         <p>Three focused practices. One relationship, and one standard of care.</p>
       </div>
 
       <div class="ledger">
-        <div class="entry" data-accent="brass" data-nav data-href="#klein-muskat">
+        <a class="entry reveal" data-accent="brass" href="klein-muskat.html">
           <span class="idx">01</span>
           <div class="entry-body">
             <h3>Klein Muskat</h3>
             <span class="role">A KMM Tax Group company</span>
             <p>Personal income tax, fiduciary returns for trusts and estates, and estate planning handled with precision and discretion.</p>
           </div>
-          <span class="go">&rarr;</span>
-        </div>
+          <span class="go" aria-hidden="true">&rarr;</span>
+        </a>
 
-        <div class="entry" data-accent="teal" data-nav data-href="#klein-mirsky">
+        <a class="entry reveal" data-accent="teal" href="klein-mirsky.html">
           <span class="idx">02</span>
           <div class="entry-body">
             <h3>Klein Mirsky</h3>
             <span class="role">A KMM Tax Group company</span>
             <p>Year-round bookkeeping and proactive tax strategy for owner-operated and growing businesses.</p>
           </div>
-          <span class="go">&rarr;</span>
-        </div>
+          <span class="go" aria-hidden="true">&rarr;</span>
+        </a>
 
-        <div class="entry" data-accent="sienna" data-nav data-href="#klein-realestate">
+        <a class="entry reveal" data-accent="sienna" href="klein-realestate.html">
           <span class="idx">03</span>
           <div class="entry-body">
             <h3>Klein Real Estate</h3>
             <span class="role">A KMM Tax Group company</span>
             <p>Specialized tax work for investors, partnerships, and property entities, from depreciation strategy to exchanges.</p>
           </div>
-          <span class="go">&rarr;</span>
-        </div>
+          <span class="go" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="values">
+  <!-- ======================= STATS ======================= -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat reveal d1"><div class="num"><span data-count="25">25</span><span class="suffix">+</span></div><div class="label">Years serving clients</div></div>
+        <div class="stat reveal d2"><div class="num"><span data-count="3000">3000</span><span class="suffix">+</span></div><div class="label">Returns filed annually</div></div>
+        <div class="stat reveal d3"><div class="num"><span data-count="3">3</span></div><div class="label">Specialized divisions</div></div>
+        <div class="stat reveal d4"><div class="num"><span data-count="98">98</span><span class="suffix">%</span></div><div class="label">Client retention</div></div>
+      </div>
+      <p class="placeholder reveal" style="font-size:0.85rem; margin-top:1.6rem;">[ Figures above are placeholders — replace with KMM's real numbers, or remove any you'd rather not publish. ]</p>
+    </div>
+  </section>
+
+  <!-- ======================= VALUES ======================= -->
+  <section class="values">
     <div class="wrap">
       <div class="values-grid">
-        <div class="value">
+        <div class="value reveal d1">
           <span class="num">01 / Specialists</span>
           <h4>Specialists, not generalists</h4>
           <p>Each division does one thing and does it deeply, so your return is handled by people who work in that area every day.</p>
         </div>
-        <div class="value">
+        <div class="value reveal d2">
           <span class="num">02 / One relationship</span>
           <h4>Full coverage, one firm</h4>
           <p>Individual, business, and real estate needs rarely stay in their own lanes. Under one group, they do not have to.</p>
         </div>
-        <div class="value">
+        <div class="value reveal d3">
           <span class="num">03 / Year-round</span>
           <h4>Proactive, all year</h4>
           <p>Planning that looks ahead to the next filing, not only the last one, with guidance you can reach between seasons.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ======================= Klein Muskat ======================= -->
-<section id="klein-muskat" class="page">
-  <div class="wrap">
-    <div class="crumb reveal d1"><a href="#home" data-nav>KMM Tax Group</a><span class="sep">/</span><span>Klein Muskat</span></div>
-    <div class="dhero">
-      <span class="eyebrow reveal d2">A KMM Tax Group company</span>
-      <h1 class="reveal d3">Personal tax, trusts, and estates.</h1>
-      <p class="lede reveal d4">Klein Muskat serves individuals and families across the full arc of personal taxation, from the annual return to fiduciary filings and estate planning, with the discretion these matters deserve.</p>
-      <div class="dhero-actions reveal d5">
-        <a class="btn-line" href="https://kleintaxgroup.taxdome.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Client Login</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="dbody">
-      <div class="col-label">
-        <span class="tag">What Klein Muskat handles</span>
-        <h2>Individuals, families, and fiduciaries.</h2>
-      </div>
-      <ul class="svc-list">
-        <li><span class="n">01</span><span><span class="t">Individual income tax (Form 1040)</span><span class="desc">Federal and multi-state returns for individuals and families, including complex and high-net-worth situations.</span></span></li>
-        <li><span class="n">02</span><span><span class="t">Trust and estate income tax (Form 1041)</span><span class="desc">Fiduciary income tax returns for trusts and estates, prepared with attention to beneficiary reporting.</span></span></li>
-        <li><span class="n">03</span><span><span class="t">Estate and gift tax</span><span class="desc">Preparation and planning support for estate and gift tax filings and lifetime transfer strategy.</span></span></li>
-        <li><span class="n">04</span><span><span class="t">Fiduciary accounting</span><span class="desc">Accountings for trustees and executors that hold up to beneficiary and court scrutiny.</span></span></li>
-        <li><span class="n">05</span><span><span class="t">Estate and succession planning</span><span class="desc">Coordination with your attorney and advisors on the tax side of transferring wealth.</span></span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dcta">
+  <!-- ======================= TESTIMONIALS ======================= -->
+  <section class="section">
     <div class="wrap">
-      <div>
-        <h3>Speak with Klein Muskat</h3>
-        <p>Personal, trust, and estate matters, handled discreetly.</p>
-      </div>
-      <button class="btn" data-nav data-href="#contact" data-division="klein-muskat"><span>Contact Klein Muskat</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= KLEIN MIRSKY ======================= -->
-<section id="klein-mirsky" class="page">
-  <div class="wrap">
-    <div class="crumb reveal d1"><a href="#home" data-nav>KMM Tax Group</a><span class="sep">/</span><span>Klein Mirsky</span></div>
-    <div class="dhero">
-      <span class="eyebrow reveal d2">A KMM Tax Group company</span>
-      <h1 class="reveal d3">Business tax and bookkeeping, year round.</h1>
-      <p class="lede reveal d4">Klein Mirsky keeps the books clean and the strategy ahead of the deadline for owner-operated and growing companies, so tax season is a confirmation rather than a scramble.</p>
-      <div class="dhero-actions reveal d5">
-        <a class="btn-line" href="https://www.kleinmirsky.com/login" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Client Login</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="dbody">
-      <div class="col-label">
-        <span class="tag">What Klein Mirsky handles</span>
-        <h2>Owner-operated and growing businesses.</h2>
-      </div>
-      <ul class="svc-list">
-        <li><span class="n">01</span><span><span class="t">Business income tax returns</span><span class="desc">Corporate, S-corporation, and partnership returns (Forms 1120, 1120-S, and 1065).</span></span></li>
-        <li><span class="n">02</span><span><span class="t">Monthly and quarterly bookkeeping</span><span class="desc">Reliable books maintained year-round, with reporting you can actually use to run the business.</span></span></li>
-        <li><span class="n">03</span><span><span class="t">Payroll and sales tax filings</span><span class="desc">Routine compliance handled on schedule, across the jurisdictions where you operate.</span></span></li>
-        <li><span class="n">04</span><span><span class="t">Financial statement preparation</span><span class="desc">Statements prepared for lenders, partners, and internal decision-making.</span></span></li>
-        <li><span class="n">05</span><span><span class="t">Entity structuring and advisory</span><span class="desc">Guidance on entity selection and structure as the business changes.</span></span></li>
-        <li><span class="n">06</span><span><span class="t">Tax planning and projections</span><span class="desc">Forward-looking projections so there are no surprises at filing.</span></span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dcta">
-    <div class="wrap">
-      <div>
-        <h3>Speak with Klein Mirsky</h3>
-        <p>Bookkeeping and business tax, kept ahead of schedule.</p>
-      </div>
-      <button class="btn" data-nav data-href="#contact" data-division="klein-mirsky"><span>Contact Klein Mirsky</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= KLEIN REAL ESTATE ======================= -->
-<section id="klein-realestate" class="page">
-  <div class="wrap">
-    <div class="crumb reveal d1"><a href="#home" data-nav>KMM Tax Group</a><span class="sep">/</span><span>Klein Real Estate</span></div>
-    <div class="dhero">
-      <span class="eyebrow reveal d2">A KMM Tax Group company</span>
-      <h1 class="reveal d3">Tax built for real estate.</h1>
-      <p class="lede reveal d4">Klein Real Estate works exclusively in the tax issues that property owners and investors face, where depreciation, basis, and structure carry as much weight as the return itself.</p>
-      <div class="dhero-actions reveal d5">
-        <span class="btn-line is-disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Client Login</span>
-        <span class="pending-note">[ add login URL ]</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="dbody">
-      <div class="col-label">
-        <span class="tag">What Klein Real Estate handles</span>
-        <h2>Investors, partnerships, and property entities.</h2>
-      </div>
-      <ul class="svc-list">
-        <li><span class="n">01</span><span><span class="t">Real estate entity and partnership returns</span><span class="desc">Returns for LLCs, partnerships, and holding entities that own and operate property.</span></span></li>
-        <li><span class="n">02</span><span><span class="t">1031 like-kind exchanges</span><span class="desc">Tax treatment and reporting for deferred-gain exchanges of investment property.</span></span></li>
-        <li><span class="n">03</span><span><span class="t">Cost segregation coordination</span><span class="desc">Working with engineering studies to accelerate depreciation where it makes sense.</span></span></li>
-        <li><span class="n">04</span><span><span class="t">Rental and property accounting</span><span class="desc">Books and reporting tailored to rental portfolios and property operations.</span></span></li>
-        <li><span class="n">05</span><span><span class="t">Depreciation and basis strategy</span><span class="desc">Depreciation schedules and basis tracking that protect value over the hold.</span></span></li>
-        <li><span class="n">06</span><span><span class="t">Investor and syndication reporting</span><span class="desc">K-1s and investor reporting prepared clearly and on time.</span></span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dcta">
-    <div class="wrap">
-      <div>
-        <h3>Speak with Klein Real Estate</h3>
-        <p>Tax strategy for property, from acquisition to exchange.</p>
-      </div>
-      <button class="btn" data-nav data-href="#contact" data-division="klein-realestate"><span>Contact Klein Real Estate</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= CONTACT ======================= -->
-<section id="contact" class="page">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-intro">
-        <span class="eyebrow reveal d1">Get in touch</span>
-        <h1 class="reveal d2">Start a conversation.</h1>
-        <p class="reveal d3">Tell us what you need and which division fits. Your inquiry routes to the right team, and someone will follow up directly.</p>
-
-        <div class="reveal d4">
-          <div class="info-row">
-            <span class="k">Phone</span>
-            <span class="v placeholder">[ add phone number ]</span>
-          </div>
-          <div class="info-row">
-            <span class="k">Email</span>
-            <span class="v placeholder">[ add email address ]</span>
-          </div>
-          <div class="info-row">
-            <span class="k">Office</span>
-            <span class="v placeholder">[ add office address ]</span>
-          </div>
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Client experiences</span>
+          <h2>Trusted across all three divisions.</h2>
         </div>
+        <p>Specific results, in clients' own words, build more trust than any claim we could make.</p>
       </div>
 
-      <div class="reveal d3">
-        <form id="contactForm">
-          <div class="field">
-            <label for="name">Full name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone">
-            </div>
-          </div>
-          <div class="field">
-            <label for="division">Which division?</label>
-            <select id="division" name="division" required>
-              <option value="">Select a division</option>
-              <option value="general">General inquiry</option>
-              <option value="klein-muskat">Klein Muskat (Personal, Trusts &amp; Estates)</option>
-              <option value="klein-mirsky">Klein Mirsky (Business Tax &amp; Bookkeeping)</option>
-              <option value="klein-realestate">Klein Real Estate (Real Estate Taxes)</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">How can we help?</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <button type="submit" class="btn"><span>Send inquiry</span></button>
-        </form>
+      <div class="tgrid" style="margin-top:2.5rem;">
+        <figure class="tcard reveal d1">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>[ Add a real client quote here. The most persuasive testimonials name a concrete result &mdash; e.g. "they restructured our entity and cut our tax bill by X." ]</blockquote>
+          <figcaption class="attr">
+            <span class="avatar" aria-hidden="true">&mdash;</span>
+            <span class="who">[ Client name ]<span>[ Title / Industry &middot; Division ]</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tcard reveal d2">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>[ Add a second client quote. Even first name + industry (e.g. "Sarah, restaurant owner") reads as authentic. ]</blockquote>
+          <figcaption class="attr">
+            <span class="avatar" aria-hidden="true">&mdash;</span>
+            <span class="who">[ Client name ]<span>[ Title / Industry &middot; Division ]</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tcard reveal d3">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>[ Add a third client quote &mdash; ideally from a different division so all three practices are represented. ]</blockquote>
+          <figcaption class="attr">
+            <span class="avatar" aria-hidden="true">&mdash;</span>
+            <span class="who">[ Client name ]<span>[ Title / Industry &middot; Division ]</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-        <div class="form-success" id="formSuccess">
-          <h3>Thank you.</h3>
-          <p>Your inquiry has been received and will be routed to the right division. We will follow up shortly.</p>
+  <!-- ======================= FAQ ======================= -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head reveal" style="border:none; justify-content:flex-start; flex-direction:column; align-items:flex-start; gap:0.6rem;">
+        <span class="eyebrow">Common questions</span>
+        <h2>Before you reach out</h2>
+      </div>
+      <div class="faq reveal">
+        <div class="faq-item">
+          <button class="faq-q">What is the difference between the three divisions?<span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Each division is a focused practice. <strong>Klein Muskat</strong> handles personal income tax, trusts, and estates. <strong>Klein Mirsky</strong> handles business tax and year-round bookkeeping. <strong>Klein Real Estate</strong> handles the tax issues specific to property owners, investors, and real estate entities. Many clients work with more than one.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">I'm not sure which division I need. Where do I start?<span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Start with our <a href="contact.html">contact form</a> and tell us a bit about your situation &mdash; or pick &ldquo;General inquiry.&rdquo; We will route you to the right division, and if your needs span more than one, we coordinate internally so you are not managing multiple relationships.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How do I share documents securely?<span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Each division uses a secure client portal for document exchange, e-signatures, and messaging. You can reach your portal any time from the <strong>Client Login</strong> menu at the top of the site.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you work with clients year-round or only at tax time?<span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>Year-round. Our work is built around planning ahead of deadlines &mdash; projections, bookkeeping, and strategy &mdash; so filing season is a confirmation rather than a scramble.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How are your fees structured?<span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><p>[ Add a short, honest answer here &mdash; e.g. whether you bill flat-fee or hourly, and that every engagement starts with a clear scope and engagement letter so there are no surprises. ]</p></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ======================= CTA BAND ======================= -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div class="reveal">
+        <h2>Let's talk about your situation.</h2>
+        <p>Tell us what you need and which division fits. We'll take it from there.</p>
+      </div>
+      <a class="btn reveal d1" href="contact.html"><span>Book a consultation</span></a>
+    </div>
+  </section>
 
 </main>
 
@@ -1071,7 +282,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a href="#home" class="logo logo--light" data-nav aria-label="KMM Tax Group home">
+        <a href="index.html" class="logo logo--light" aria-label="KMM Tax Group home">
           <span class="logo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="logo-type">
             <span class="logo-name">KMM</span>
@@ -1084,144 +295,36 @@
       <div class="foot-col">
         <h5>Divisions</h5>
         <ul>
-          <li><a href="#klein-muskat" data-nav>Klein Muskat<span class="sub">Personal, Trusts &amp; Estates</span></a></li>
-          <li><a href="#klein-mirsky" data-nav>Klein Mirsky<span class="sub">Business Tax &amp; Bookkeeping</span></a></li>
-          <li><a href="#klein-realestate" data-nav>Klein Real Estate<span class="sub">Real Estate Taxes</span></a></li>
+          <li><a href="klein-muskat.html">Klein Muskat<span class="sub">Personal, Trusts &amp; Estates</span></a></li>
+          <li><a href="klein-mirsky.html">Klein Mirsky<span class="sub">Business Tax &amp; Bookkeeping</span></a></li>
+          <li><a href="klein-realestate.html">Klein Real Estate<span class="sub">Real Estate Taxes</span></a></li>
         </ul>
       </div>
       <div class="foot-col">
         <h5>Firm</h5>
         <ul>
-          <li><a href="#home" data-nav>Home</a></li>
-          <li><a href="#contact" data-nav>Contact</a></li>
-          <li><span class="placeholder" style="font-size:0.95rem;">[ add address ]</span></li>
-          <li><span class="placeholder" style="font-size:0.95rem;">[ add phone ]</span></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy &amp; Disclaimer</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a class="placeholder" href="tel:">[ add phone ]</a></li>
+          <li><a class="placeholder" href="mailto:">[ add email ]</a></li>
+          <li><span class="placeholder">[ add office address ]</span></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2026 KMM Tax Group. All rights reserved.</span>
+      <span>&copy; <span id="year">2026</span> KMM Tax Group. All rights reserved.</span>
       <span>Each division is a KMM Tax Group company.</span>
     </div>
   </div>
 </footer>
 
-<script>
-  /* ============================================================
-     Hash router: shows one .page at a time, updates nav + title.
-     Splits cleanly into real routes later (e.g. /klein-muskat on Replit).
-     ============================================================ */
-
-  var PAGES = {
-    "home":             "KMM Tax Group",
-    "klein-muskat":              "Klein Muskat | KMM Tax Group",
-    "klein-mirsky":     "Klein Mirsky | KMM Tax Group",
-    "klein-realestate": "Klein Real Estate | KMM Tax Group",
-    "contact":          "Contact | KMM Tax Group"
-  };
-
-  function routeFromHash() {
-    var raw = (location.hash || "#home").replace(/^#\/?/, "");
-    return PAGES[raw] ? raw : "home";
-  }
-
-  function showPage(id) {
-    var pages = document.querySelectorAll(".page");
-    for (var i = 0; i < pages.length; i++) {
-      pages[i].classList.remove("active");
-    }
-    var target = document.getElementById(id);
-    if (target) {
-      // force reflow so the reveal animation re-runs on each visit
-      void target.offsetWidth;
-      target.classList.add("active");
-    }
-
-    // nav active state
-    var links = document.querySelectorAll("nav.links a[data-nav]");
-    for (var j = 0; j < links.length; j++) {
-      var href = (links[j].getAttribute("href") || "").replace("#", "");
-      links[j].classList.toggle("active", href === id);
-    }
-
-    document.title = PAGES[id] || "KMM Tax Group";
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }
-
-  window.addEventListener("hashchange", function () {
-    closeMenu();
-    showPage(routeFromHash());
-  });
-
-  /* navigate helper for buttons / cards (data-href or href) */
-  function bindNav() {
-    var els = document.querySelectorAll("[data-nav]");
-    for (var i = 0; i < els.length; i++) {
-      els[i].addEventListener("click", function (e) {
-        var el = e.currentTarget;
-        var dest = el.getAttribute("data-href") || el.getAttribute("href");
-        if (!dest) return;
-        e.preventDefault();
-
-        // optional: preselect a division on the contact form
-        var div = el.getAttribute("data-division");
-        if (div) {
-          var sel = document.getElementById("division");
-          if (sel) sel.value = div;
-        }
-
-        if (location.hash === dest) {
-          showPage(routeFromHash());   // same hash, re-render manually
-        } else {
-          location.hash = dest;        // triggers hashchange
-        }
-      });
-    }
-  }
-
-  /* mobile menu */
-  var navLinks = document.getElementById("navLinks");
-  var toggle = document.getElementById("menuToggle");
-  function closeMenu() { navLinks.classList.remove("open"); }
-  toggle.addEventListener("click", function () { navLinks.classList.toggle("open"); });
-
-  /* "view our divisions" scrolls within the home page */
-  document.getElementById("exploreBtn").addEventListener("click", function () {
-    if (routeFromHash() !== "home") { location.hash = "#home"; }
-    setTimeout(function () {
-      var d = document.getElementById("divisions");
-      if (d) d.scrollIntoView({ behavior: "smooth" });
-    }, 60);
-  });
-
-  /* contact form (prototype: confirms on screen, no backend wired yet) */
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    this.style.display = "none";
-    document.getElementById("formSuccess").classList.add("show");
-  });
-
-  /* client login dropdown */
-  (function () {
-    var dd = document.querySelector(".has-dropdown");
-    if (!dd) return;
-    var trigger = dd.querySelector(".dropdown-trigger");
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      var open = dd.classList.toggle("open");
-      trigger.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    document.addEventListener("click", function (e) {
-      if (dd.classList.contains("open") && !dd.contains(e.target)) {
-        dd.classList.remove("open");
-        trigger.setAttribute("aria-expanded", "false");
-      }
-    });
-  })();
-
-  /* init */
-  bindNav();
-  showPage(routeFromHash());
-</script>
+<script src="assets/app.js"></script>
 </body>
 </html>
