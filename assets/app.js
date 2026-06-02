@@ -1,5 +1,5 @@
 /* ============================================================
-   KMM TAX GROUP — shared behavior for the multi-page site.
+   KMM TAX GROUP, shared behavior for the multi-page site.
    Progressive enhancement: every page works without JS; this
    layer adds the menu, dropdown, reveals, counters, and form.
    ============================================================ */
