@@ -6,6 +6,20 @@
 (function () {
   "use strict";
 
+  /* ---------- Analytics (off until you add an ID) ---------- */
+  (function () {
+    var GA_ID = ""; // <-- paste your GA4 Measurement ID here, e.g. "G-XXXXXXXXXX"
+    if (!GA_ID) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+  })();
+
   /* ---------- Mobile menu ---------- */
   var navLinks = document.getElementById("navLinks");
   var toggle = document.getElementById("menuToggle");
