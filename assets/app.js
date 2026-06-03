@@ -24,8 +24,10 @@
   var navLinks = document.getElementById("navLinks");
   var toggle = document.getElementById("menuToggle");
   if (toggle && navLinks) {
+    toggle.setAttribute("aria-expanded", "false");
     toggle.addEventListener("click", function () {
-      navLinks.classList.toggle("open");
+      var open = navLinks.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
   }
 
