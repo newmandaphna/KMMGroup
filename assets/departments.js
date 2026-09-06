@@ -13,10 +13,20 @@
      message  : URL new inquiries should go to (e.g. a TaxDome
                 contact form). Leave blank to route to the site's
                 own contact form with the division preselected.
+     schedule : booking page URL (TaxDome scheduling, Calendly, etc.).
+                Leave blank and "Schedule a consultation" shows a
+                request-a-time form routed to the division instead.
+     pay      : invoice payment URL. Leave blank to fall back to the
+                portal login.
      formEndpoint : optional per-division form endpoint (Formspree
                 or any endpoint that accepts a POST). Leave blank to
                 use the shared endpoint below.
      email / phone : optional; shown on the contact page when set.
+
+   Visitors pick a practice once (Client Hub, scheduling, message a
+   department, or the contact form) and the site remembers it, so
+   every login, signup, schedule, message, and payment link on the
+   site points at that practice's own account.
    ============================================================ */
 window.KMM = window.KMM || {};
 
@@ -48,6 +58,8 @@ window.KMM.departments = [
     description: "Individual income tax, fiduciary returns for trusts and estates, estate and gift tax, and succession planning.",
     portal: "https://kleintaxgroup.taxdome.com/",
     signup: "",
+    schedule: "",
+    pay: "",
     message: "",
     formEndpoint: "",
     email: "",
@@ -62,6 +74,8 @@ window.KMM.departments = [
     description: "Business returns, year-round bookkeeping, payroll and sales tax, financial statements, and entity advisory.",
     portal: "https://www.kleinmirsky.com/login",
     signup: "",
+    schedule: "",
+    pay: "",
     message: "",
     formEndpoint: "",
     email: "",
@@ -76,6 +90,8 @@ window.KMM.departments = [
     description: "Entity and partnership returns, 1031 exchanges, cost segregation, depreciation strategy, and investor reporting.",
     portal: "",
     signup: "",
+    schedule: "",
+    pay: "",
     message: "",
     formEndpoint: "",
     email: "",
@@ -90,6 +106,8 @@ window.KMM.departments = [
     description: "Tell us about your situation and we will route it to the right practice.",
     portal: "",
     signup: "",
+    schedule: "",
+    pay: "",
     message: "",
     formEndpoint: "",
     email: "",

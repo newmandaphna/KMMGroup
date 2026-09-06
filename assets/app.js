@@ -135,6 +135,79 @@
     });
   })();
 
+  /* ---------- Practice selection (remembered across the site) ----------
+     The visitor picks a practice once. Every element with
+     data-firm-action="portal|signup|schedule|message|pay|page"
+     re-points at that practice's own account, and every
+     <select data-firm-select> stays in sync. */
+  var FIRM_KEY = "kmm.firm";
+  function firmGet() {
+    try { var v = localStorage.getItem(FIRM_KEY); return dept(v) && v !== "general" ? v : ""; } catch (e) { return ""; }
+  }
+  function firmSet(id) {
+    try { if (id && dept(id) && id !== "general") localStorage.setItem(FIRM_KEY, id); else localStorage.removeItem(FIRM_KEY); } catch (e) {}
+    firmApply();
+  }
+  function firmUrl(d, action) {
+    if (!d) return null;
+    var q = "?division=" + encodeURIComponent(d.id);
+    switch (action) {
+      case "portal": return isConfigured(d.portal) ? d.portal : null;
+      case "pay": return isConfigured(d.pay) ? d.pay : (isConfigured(d.portal) ? d.portal : null);
+      case "signup": return isConfigured(d.signup) ? d.signup : "contact.html" + q + "#inquiry";
+      case "schedule": return isConfigured(d.schedule) ? d.schedule : "schedule.html" + q + "#request";
+      case "message": return isConfigured(d.message) ? d.message : "contact.html" + q + "#inquiry";
+      case "page": return d.page;
+    }
+    return null;
+  }
+  function firmApply() {
+    var id = firmGet(), d = dept(id);
+    document.documentElement.setAttribute("data-firm-current", id || "");
+    qsa("select[data-firm-select]").forEach(function (s) { if (s.value !== id) s.value = id; });
+    qsa("[data-firm-name]").forEach(function (el) { el.textContent = d ? d.name : (el.getAttribute("data-firm-name") || "your practice"); });
+    qsa("[data-firm-short]").forEach(function (el) { el.textContent = d ? d.short : ""; });
+    qsa("[data-firm-action]").forEach(function (a) {
+      var url = firmUrl(d, a.getAttribute("data-firm-action"));
+      var external = url && /^https?:/i.test(url);
+      if (url) {
+        a.setAttribute("href", url);
+        a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled");
+        if (external) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); } else { a.removeAttribute("target"); a.removeAttribute("rel"); }
+      } else {
+        a.setAttribute("href", d ? "contact.html?division=" + d.id + "#inquiry" : "portal.html");
+        a.classList.toggle("is-disabled", !!d); if (d) a.setAttribute("aria-disabled", "true"); else a.removeAttribute("aria-disabled");
+        a.removeAttribute("target"); a.removeAttribute("rel");
+      }
+      var note = qs("[data-firm-note]", a);
+      if (note) note.textContent = !d ? "Choose a practice first" : (url ? (external ? "Opens " + d.name + "'s secure portal" : "") : "Coming soon for " + d.name);
+    });
+    qsa("[data-firm-when]").forEach(function (el) { el.hidden = (el.getAttribute("data-firm-when") === "set") ? !d : !!d; });
+    qsa("[data-dept-contact-current]").forEach(function (el) {
+      var parts = [];
+      if (d && d.phone) parts.push('<a href="tel:' + d.phone.replace(/[^\d+]/g, "") + '">' + esc(d.phone) + "</a>");
+      if (d && d.email) parts.push('<a href="mailto:' + esc(d.email) + '">' + esc(d.email) + "</a>");
+      el.innerHTML = parts.join(" &middot; ");
+    });
+    qsa("[data-firm-pick]").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-firm-pick") === id); b.setAttribute("aria-pressed", b.getAttribute("data-firm-pick") === id ? "true" : "false"); });
+    qsa("[data-firm-embed]").forEach(function (box) {
+      var url = d && isConfigured(d.schedule) ? d.schedule : "";
+      var frame = qs("iframe", box);
+      box.hidden = !url;
+      if (frame && url && frame.getAttribute("src") !== url) frame.setAttribute("src", url);
+      var req = qs("[data-firm-request]"); if (req) req.hidden = !!url;
+    });
+  }
+  window.KMM.firm = { get: firmGet, set: firmSet, url: function (id, action) { return firmUrl(dept(id), action); } };
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var pre = params.get("firm") || params.get("division");
+    if (pre && dept(pre) && pre !== "general") { try { localStorage.setItem(FIRM_KEY, pre); } catch (e) {} }
+    qsa("select[data-firm-select]").forEach(function (s) { s.addEventListener("change", function () { firmSet(s.value); }); });
+    qsa("[data-firm-pick]").forEach(function (b) { b.addEventListener("click", function () { firmSet(b.getAttribute("data-firm-pick")); }); });
+    firmApply();
+  })();
+
   /* ---------- Firm details (from departments.js) ----------
      <span data-firm="phone"></span> inside an optional [data-firm-row]
      wrapper. Filled when the value is set; the row stays hidden otherwise. */
@@ -172,11 +245,13 @@
         if (desc) desc.textContent = d ? d.description : "";
       }
       select.addEventListener("change", update);
+      if (!select.value && firmGet()) select.value = firmGet();
       update();
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var d = dept(select.value);
         if (!d) { select.focus(); return; }
+        if (d.id !== "general") firmSet(d.id);
         if (isConfigured(d.message)) { window.open(d.message, "_blank", "noopener"); return; }
         location.href = "contact.html?division=" + encodeURIComponent(d.id) + "#inquiry";
       });
@@ -191,6 +266,8 @@
     var pre = params.get("division");
     var sel = qs("#division", form);
     if (pre && sel) { sel.value = pre; if (sel.value !== pre) sel.value = ""; }
+    else if (sel && !sel.value && firmGet()) sel.value = firmGet();
+    if (sel) sel.addEventListener("change", function () { if (sel.value && sel.value !== "general") firmSet(sel.value); });
     var success = qs("#formSuccess");
     var error = qs("#formError");
     form.addEventListener("submit", function (e) {
@@ -208,6 +285,29 @@
           if (btn) { btn.disabled = false; btn.textContent = "Send inquiry"; }
           if (error) error.classList.add("show");
         });
+    });
+  })();
+
+  /* ---------- Schedule: request-a-time form ---------- */
+  (function () {
+    var form = qs("#scheduleForm");
+    if (!form) return;
+    var sel = qs("select[name=division]", form);
+    var success = qs("#scheduleSuccess"), error = qs("#scheduleError");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var d = sel ? dept(sel.value) : null;
+      if (!d) { if (sel) sel.focus(); return; }
+      firmSet(d.id);
+      var endpoint = isConfigured(d.formEndpoint) ? d.formEndpoint : (isConfigured(CONFIG.formEndpoint) ? CONFIG.formEndpoint : "");
+      var done = function () { form.hidden = true; if (success) { qsa("[data-firm-name]", success).forEach(function (el) { el.textContent = d.name; }); success.classList.add("show"); success.scrollIntoView({ block: "center" }); } };
+      if (!endpoint) { done(); return; }
+      var btn = qs("button[type=submit]", form);
+      if (btn) { btn.disabled = true; btn.textContent = "Sending"; }
+      if (error) error.classList.remove("show");
+      fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (res) { if (!res.ok) throw new Error("bad status"); done(); })
+        .catch(function () { if (btn) { btn.disabled = false; btn.textContent = "Request a time"; } if (error) error.classList.add("show"); });
     });
   })();
 
@@ -441,7 +541,8 @@
       qs("p", result).textContent = o.body;
       qs(".fr-primary", result).setAttribute("href", o.page);
       var deptId = pick === "multi" ? "general" : pick;
-      qs(".fr-contact", result).setAttribute("href", "contact.html?division=" + deptId + "#inquiry");
+      qs(".fr-contact", result).setAttribute("href", deptId === "general" ? "contact.html?division=general#inquiry" : "schedule.html?division=" + deptId);
+      if (deptId !== "general") firmSet(deptId);
       questions.forEach(function (q) { q.classList.remove("active"); });
       progress.forEach(function (p) { p.classList.add("done"); });
       result.classList.add("active");
