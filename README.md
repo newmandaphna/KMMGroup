@@ -1,52 +1,64 @@
 # KMM Tax Group
 
-Marketing website for **KMM Tax Group**, a multi-division tax firm with three divisions:
+Marketing website for **KMM Tax Group**, a firm of three specialized tax practices:
 
 - **Klein Muskat**, personal income tax, trusts, and estates
 - **Klein Mirsky**, business tax and year-round bookkeeping
 - **Klein Real Estate**, tax for investors, partnerships, and property entities
 
-It's a **static multi-page site**, plain HTML, one shared CSS file, and one shared JS file. No build step, no framework, no dependencies to install.
+It is a **static multi-page site**: plain HTML, one shared stylesheet, two small scripts. No build step, no framework, nothing to install.
 
 ## Structure
 
 ```
 KMMGroup/
-├── index.html              Home (hero, divisions, stats, testimonials, FAQ)
-├── klein-muskat.html       Division, Personal, Trusts & Estates
-├── klein-mirsky.html       Division, Business Tax & Bookkeeping
-├── klein-realestate.html   Division, Real Estate Taxes
-├── about.html              Firm story, "how we work," team
-├── insights.html           Articles / resources (SEO engine)
-├── contact.html            Contact form + client portals
-├── privacy.html            Privacy policy & disclaimer (template)
-├── robots.txt              Crawl directives
-├── sitemap.xml             Sitemap for search engines
+├── index.html                  Home: hero + quick access, practices, industries, deadlines, insights, practice finder, message a department
+├── services.html               Every service across the firm, grouped by practice (mega-menu links land here)
+├── industries.html             Industries served, with the practice that handles each
+├── klein-muskat.html           Practice page
+├── klein-mirsky.html           Practice page
+├── klein-realestate.html       Practice page
+├── insights.html               Articles and resources, filterable by topic
+├── insights-*.html             Individual articles (copy one to add more)
+├── year-end-tax-checklist.html Printable checklist (email-gated lead magnet)
+├── tax-calendar.html           Federal deadlines computed for this year and next, .ics export
+├── about.html                  Firm story, practices, process, leadership
+├── careers.html                Careers page (openings block is commented out until needed)
+├── contact.html                Inquiry form, practice cards, message a department, FAQ
+├── privacy.html                Privacy policy and disclaimer (template)
+├── 404.html                    Not-found page
+├── robots.txt / sitemap.xml
 └── assets/
-    ├── styles.css          Shared styles (design system + components)
-    ├── app.js              Shared behavior (menu, reveals, counters, FAQ, form)
-    └── kmm-logo.png         Logo (also used as the social-share / Open Graph image)
+    ├── styles.css              Design system and every component
+    ├── departments.js          ONE place to wire each practice's portal, signup, and inbox
+    ├── app.js                  Navigation, deadline engine, practice finder, routing, forms
+    └── kmm-logo.png, og-image.jpg, apple-touch-icon.png
 ```
+
+## How the department routing works
+
+Every practice runs its own practice-management account (TaxDome for some, a separate portal for others). `assets/departments.js` is the single directory of those endpoints. Each entry has:
+
+| Field | What it does when set |
+|---|---|
+| `portal` | "Client Login" links for that practice point here (nav, home quick access, practice page, contact page). Leave blank and the link shows "Portal coming soon". |
+| `signup` | "Become a client" buttons for that practice go straight to the TaxDome client-signup form. Blank = they open the site inquiry form with the practice preselected. |
+| `message` | "Message a department" sends the visitor here (for example a TaxDome contact form for that practice). Blank = the site contact form with the practice preselected. |
+| `formEndpoint` | Inquiries for that practice POST to this endpoint (a per-practice Formspree form, a Zapier webhook, or any endpoint). Blank = the shared endpoint in `KMM.config.formEndpoint`. |
+| `email`, `phone` | Shown on the practice card on the contact page and in the practice page sidebar when set. |
+
+`KMM.config` at the top of the same file holds the shared form endpoint, the newsletter endpoint, and the careers inbox. Until an endpoint is set, forms show an on-screen confirmation and send nothing.
+
+See `TAXDOME-SETUP.md` for how to get the signup URLs and pipelines from each TaxDome account.
 
 ## Viewing the site
 
-Open `index.html` in any modern browser. Because pages link to each other with relative paths and the form posts to an external service, everything works as plain files, no server needed for a quick look. (For the cleanest local experience you can serve the folder, e.g. `npx serve`, but it isn't required.)
+Open `index.html` in a browser, or serve the folder (`python3 -m http.server 5000`) for the cleanest experience. Everything works as plain files.
 
-## Before launch, fill these in
+## Before launch
 
-The site uses bracketed `[ ... ]` placeholders wherever real content is needed. Search the project for `[` to find them all. Key items:
-
-- **Contact details**, phone, email, office address, hours (in every footer + `contact.html`).
-- **Domain**, replace `www.kmmtaxgroup.com` in each page's `canonical`/Open Graph tags, in `sitemap.xml`, and in `robots.txt`.
-- **Contact form**, create a free form at [formspree.io](https://formspree.io) and replace `REPLACE_WITH_FORM_ID` in `contact.html`. Until then the form shows an on-screen confirmation but does not send.
-- **Team**, add real people (name, title, credential, headshot) in `about.html`. This is the biggest trust signal on the site.
-- **Testimonials**, replace the placeholder quotes in `index.html`.
-- **Stats**, replace or remove the example figures in `index.html`.
-- **Klein Real Estate portal**, add the login URL once the TaxDome account is live (in the nav dropdown and on `klein-realestate.html`).
-- **Privacy & disclaimer**, have an attorney review `privacy.html` before publishing.
-
-Client portals already wired: Klein Muskat → `kleintaxgroup.taxdome.com`, Klein Mirsky → `kleinmirsky.com/login`.
+The site uses bracketed `[ ... ]` placeholders where real content is needed. Search the project for `[ ` to find them all. The full list is in `LAUNCH-CHECKLIST.md`.
 
 ## Deploying with Replit
 
-Import this repo into Replit and create a **Static** Deployment with the **public directory** set to the repo root (`.`). No build command is needed. After deploying, point the canonical/sitemap/robots URLs at the live domain and submit the sitemap in Google Search Console.
+The repo includes a `.replit` configured for a **Static** deployment with the public directory set to the repo root. No build command. After deploying, point the canonical, sitemap, and robots URLs at the live domain and submit `sitemap.xml` in Google Search Console.

@@ -1,46 +1,37 @@
 # KMM Tax Group launch checklist
 
-Work top to bottom. Anything in the site shown as `[ ... ]` is a placeholder waiting
-on you, search the project for `[` to find them all.
+Work top to bottom. Anything on the site shown as `[ ... ]` is a placeholder waiting on you. Search the project for `[ ` to find them all.
 
 ## 1. Content to fill in
-- [ ] **Phone, email, office address, hours**, appear in every footer and on `contact.html`.
-- [ ] **Team**, real names, titles, credentials (CPA / EA), and headshots in `about.html`. *(Biggest trust signal on the site.)*
-- [ ] **Testimonials**, replace the three placeholder quotes in `index.html`.
-- [ ] **Stat figures**, replace or remove the example numbers in `index.html`.
-- [ ] **FAQ fee answer**, fill the "How are your fees structured?" answer in `index.html` (then it can be added to the FAQ schema).
-- [ ] **Founding year / firm story**, finish the story paragraph in `about.html`.
+- [ ] **Phone, email, office address, hours**: `contact.html` (Reach the firm) and the footer of every page.
+- [ ] **Leadership**: real names, titles, credentials (CPA / EA), and photographs in `about.html`. The single biggest trust signal on an accounting site.
+- [ ] **Founding story**: the placeholder paragraph in `about.html`.
+- [ ] **Credentials strip**: memberships and "serving clients since" in `about.html`.
+- [ ] **Fees answer**: the last FAQ on `contact.html`.
+- [ ] **Careers inbox**: `careersEmail` in `assets/departments.js` and the "Email a resume" button in `careers.html`. To post a role, uncomment the roles block in `careers.html`.
+- [ ] **LinkedIn**: the footer social link (search for `Add LinkedIn URL`).
 
-## 2. Make the contact form actually send
-- [ ] Create a free form at [formspree.io](https://formspree.io) and replace `REPLACE_WITH_FORM_ID` in `contact.html`. Until then the form shows an on-screen confirmation but emails nothing.
+## 2. Wire the practices (assets/departments.js)
+- [ ] **Klein Real Estate portal URL** (`portal`). The nav, home quick access, practice page, and contact page all light up from this one field.
+- [ ] **Sign-up URLs** for each practice (`signup`) from TaxDome Settings > Client signup. See `TAXDOME-SETUP.md`.
+- [ ] **Inquiry endpoint**: create a form at formspree.io (or one per practice) and set `formEndpoint`. Until then the form confirms on screen and sends nothing.
+- [ ] Optional: per-practice `message` URLs so "Message a department" goes straight to that practice's TaxDome inbox.
+- [ ] Optional: `newsletterEndpoint` for the footer signup.
 
-## 3. New-client → TaxDome flow
-- [ ] Follow **TAXDOME-SETUP.md**. Add the three division **sign-up URLs** to the "New clients, get started" cards on `contact.html` (and repoint the division "Become a client" buttons if you want them to go straight to each sign-up).
-- [ ] Add the **Klein Real Estate portal URL** once that account is live (nav dropdown + `klein-realestate.html` + contact portal card).
+## 3. Domain and SEO
+- [ ] Replace `www.kmmtaxgroup.com` in every page head (canonical and Open Graph), `sitemap.xml`, and `robots.txt`.
+- [ ] Submit `sitemap.xml` in Google Search Console after deploy.
+- [ ] Claim and verify the **Google Business Profile**; keep name, address, phone identical to the site.
 
-## 4. Domain & SEO
-- [ ] Point the real domain everywhere `www.kmmtaxgroup.com` appears: each page's `canonical` + Open Graph tags, `sitemap.xml`, and `robots.txt`.
-- [ ] After deploy, submit `sitemap.xml` in **Google Search Console**.
-- [ ] **Google Business Profile**, claim/verify it; keep name, address, phone identical to the site. This is the single biggest local-SEO lever, and it feeds the review stars people look for. Pipe real Google reviews into the testimonials section.
+## 4. Analytics
+- [ ] Add a GA4 Measurement ID in `assets/app.js` (`GA_ID`). Then update the analytics line in `privacy.html`.
 
-## 5. Analytics
-- [ ] Add your **GA4 Measurement ID** (`G-XXXXXXXXXX`) in `assets/app.js`, see the `GA_ID` line near the top. It stays off until you paste an ID. (Or swap in privacy-friendly Plausible.)
-- [ ] If you add analytics, update the cookies/analytics line in `privacy.html` and consider a simple consent banner.
+## 5. Legal
+- [ ] Have an attorney review `privacy.html` before publishing.
 
-## 6. Brand assets
-- [x] **Optimized share image** (done). `assets/og-image.jpg` (1200x630, about 48 KB) is generated from the logo and wired into every page's Open Graph and Twitter tags.
-- [x] **apple-touch-icon** (done). `assets/apple-touch-icon.png` (180x180) is generated and linked in every page head. The SVG favicon covers browsers.
+## 6. Deploy (Replit)
+- [ ] Static deployment, public directory = repo root. No build command.
+- [ ] Confirm unknown URLs serve `404.html`.
 
-## 7. Legal
-- [ ] Have an attorney review `privacy.html` (privacy policy + disclaimer) before publishing.
-
-## 8. Deploy (Replit)
-- [ ] Import the repo → **Static** deployment → public directory = repo root (`.`). No build command.
-- [ ] Confirm the host serves `404.html` for unknown URLs (most static hosts do automatically).
-
-## Already done in the build
-Multi-page structure · shared CSS/JS · per-page SEO meta + Open Graph + JSON-LD
-(`AccountingService`, `BlogPosting`, `FAQPage`) · sitemap + robots · scroll animations ·
-trust bar, stats, testimonials, team, FAQ, process, CTA sections · per-division client
-logins · Formspree-ready form with intake fields · 404 page · Insights article template ·
-year-end checklist lead magnet.
+## Already built
+Mega-menu navigation with per-practice service links · client-login dropdown per practice · home quick-access panel · practice finder (three questions) · federal tax calendar computed each year with weekend/holiday rollover and .ics export · upcoming-deadlines widget · industries page · services index with scroll-spy · insights with topic filter · message-a-department routing · contact form with practice preselect · year-end checklist lead magnet · careers page · per-page SEO meta, Open Graph, JSON-LD (AccountingService, BlogPosting, FAQPage) · sitemap and robots · 404 · print styles.
