@@ -47,7 +47,7 @@ Every practice runs its own practice-management account (TaxDome for some, a sep
 | `formEndpoint` | Inquiries for that practice POST to this endpoint (a per-practice Formspree form, a Zapier webhook, or any endpoint). Blank = the shared endpoint in `KMM.config.formEndpoint`. |
 | `email`, `phone` | Shown on the practice card on the contact page and in the practice page sidebar when set. |
 
-`KMM.config` at the top of the same file holds the shared form endpoint, the newsletter endpoint, and the careers inbox. Until an endpoint is set, forms show an on-screen confirmation and send nothing.
+`KMM.config` at the top of the same file holds the firm-wide contact details (phone, email, address, hours, LinkedIn), the shared form endpoint, the newsletter endpoint, and the careers inbox. Contact details render into the header, footer, and contact page as soon as they are set and stay hidden until then. Until a form endpoint is set, forms show an on-screen confirmation and send nothing.
 
 See `TAXDOME-SETUP.md` for how to get the signup URLs and pipelines from each TaxDome account.
 
@@ -57,7 +57,7 @@ Open `index.html` in a browser, or serve the folder (`python3 -m http.server 500
 
 ## Before launch
 
-The site uses bracketed `[ ... ]` placeholders where real content is needed. Search the project for `[ ` to find them all. The full list is in `LAUNCH-CHECKLIST.md`.
+Nothing on the public site shows placeholder text; details that are not filled in yet are simply hidden. The list of what to fill in is in `LAUNCH-CHECKLIST.md`.
 
 ## Deploying with Replit
 

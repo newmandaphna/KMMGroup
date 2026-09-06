@@ -2,14 +2,14 @@
 
 Work top to bottom. Anything on the site shown as `[ ... ]` is a placeholder waiting on you. Search the project for `[ ` to find them all.
 
+Nothing on the public site shows a placeholder. Missing details are hidden until you fill them in, so the site is safe to publish as is.
+
 ## 1. Content to fill in
-- [ ] **Phone, email, office address, hours**: `contact.html` (Reach the firm) and the footer of every page.
-- [ ] **Leadership**: real names, titles, credentials (CPA / EA), and photographs in `about.html`. The single biggest trust signal on an accounting site.
-- [ ] **Founding story**: the placeholder paragraph in `about.html`.
-- [ ] **Credentials strip**: memberships and "serving clients since" in `about.html`.
-- [ ] **Fees answer**: the last FAQ on `contact.html`.
-- [ ] **Careers inbox**: `careersEmail` in `assets/departments.js` and the "Email a resume" button in `careers.html`. To post a role, uncomment the roles block in `careers.html`.
-- [ ] **LinkedIn**: the footer social link (search for `Add LinkedIn URL`).
+- [ ] **Phone, email, office address, hours, LinkedIn**: `KMM.config.firm` at the top of `assets/departments.js`. Each value appears in the header, footer, and contact page the moment it is set.
+- [ ] **Leadership**: `about.html` has a leadership section switched off inside an HTML comment (search for `LEADERSHIP`). Add real names, titles, credentials, and photographs, then remove the comment wrapper. The single biggest trust signal on an accounting site.
+- [ ] **Founding story**: add a paragraph where the comment in `about.html` marks the spot.
+- [ ] **Fees answer**: add the "How are your fees structured?" question to the FAQ on `contact.html` when there is a plain answer.
+- [ ] **Careers inbox**: `careersEmail` in `assets/departments.js` makes the "Email a resume" button appear. To post a role, uncomment the roles block in `careers.html`.
 
 ## 2. Wire the practices (assets/departments.js)
 - [ ] **Klein Real Estate portal URL** (`portal`). The nav, home quick access, practice page, and contact page all light up from this one field.

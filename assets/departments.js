@@ -21,6 +21,15 @@
 window.KMM = window.KMM || {};
 
 window.KMM.config = {
+  /* Firm-wide contact details. Each appears in the header, footer, and
+     contact page as soon as it is filled in; blank fields stay hidden. */
+  firm: {
+    phone: "",        /* e.g. "(212) 555-0100" */
+    email: "",        /* e.g. "info@kmmtaxgroup.com" */
+    address: "",      /* one line, or use \n for a line break */
+    hours: "",        /* e.g. "Monday to Friday, 9am to 5pm" */
+    linkedin: ""      /* company page URL; the footer icon appears when set */
+  },
   /* Shared contact-form endpoint (create a form at formspree.io and paste its URL). */
   formEndpoint: "",
   /* Newsletter signup endpoint (Formspree, Mailchimp, etc.). Blank = confirmation only. */
