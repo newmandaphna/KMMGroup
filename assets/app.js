@@ -135,6 +135,29 @@
     });
   })();
 
+  /* ---------- Firm details (from departments.js) ----------
+     <span data-firm="phone"></span> inside an optional [data-firm-row]
+     wrapper. Filled when the value is set; the row stays hidden otherwise. */
+  (function () {
+    var F = CONFIG.firm || {};
+    var any = false;
+    qsa("[data-firm]").forEach(function (el) {
+      var key = el.getAttribute("data-firm");
+      var val = String(key === "careersEmail" ? (CONFIG.careersEmail || "") : (F[key] || "")).trim();
+      var row = el.closest("[data-firm-row]") || el;
+      if (!val) { row.hidden = true; return; }
+      row.hidden = false;
+      if (["phone", "email", "address", "hours"].indexOf(key) !== -1) any = true;
+      var a = el.tagName === "A" ? el : (row.tagName === "A" ? row : null);
+      if (key === "phone") { el.textContent = val; if (a) a.setAttribute("href", "tel:" + val.replace(/[^\d+]/g, "")); }
+      else if (key === "email") { el.textContent = val; if (a) a.setAttribute("href", "mailto:" + val); }
+      else if (key === "careersEmail") { if (a) a.setAttribute("href", "mailto:" + val); }
+      else if (key === "linkedin") { if (a) a.setAttribute("href", val); }
+      else { el.innerHTML = esc(val).replace(/\n/g, "<br>"); }
+    });
+    qsa("[data-firm-section]").forEach(function (el) { el.hidden = !any; });
+  })();
+
   /* ---------- Message a department (routing) ----------
      Routes an inquiry to the division's own inbox when one is
      configured in departments.js; otherwise to the site contact

@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://www.kmmtaxgroup.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KMM Tax Group">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="KMM Tax Group | Tax specialists for individuals, businesses, and real estate">
 <meta property="og:description" content="KMM Tax Group is a firm of three specialized tax practices: Klein Muskat for personal tax, trusts and estates; Klein Mirsky for business tax and bookkeeping; and Klein Real Estate for property owners and investors.">
 <meta property="og:url" content="https://www.kmmtaxgroup.com/">
@@ -53,6 +54,7 @@
       <a href="klein-realestate.html">Klein Real Estate</a>
     </div>
     <div class="topbar-right">
+      <a class="topbar-phone" data-firm-row hidden href="tel:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span data-firm="phone"></span></a>
       <a href="tax-calendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Tax calendar</a>
       <a href="contact.html#department"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>Message a department</a>
     </div>
@@ -109,6 +111,7 @@
     </ul>
     <div class="nav-actions">
       <a class="btn" href="contact.html">Contact us</a>
+      <a class="nav-contact-sm" href="contact.html">Contact</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="navMain"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -120,11 +123,11 @@
     <div class="wrap">
       <div>
         <span class="kicker kicker--light">KMM Tax Group</span>
-        <h1>Tax specialists for individuals, businesses, and real estate.</h1>
-        <p class="lede">KMM Tax Group is one firm built from three focused practices. Klein Muskat handles personal, trust, and estate tax. Klein Mirsky handles business tax and bookkeeping. Klein Real Estate handles property owners and investors. Each works in its field every day, and they work together on yours.</p>
+        <h1>Specialist tax practices. One accountable firm.</h1>
+        <p class="lede">Personal, business, and real estate tax, each handled by a practice that works in that field every day, and coordinated under one roof so nothing falls between advisors.</p>
         <div class="hero-actions">
-          <a class="btn btn-light" href="contact.html">Talk to a specialist</a>
-          <a class="btn-outline" href="services.html" style="color:#fff; border-color:rgba(255,255,255,0.5);">Explore our services</a>
+          <a class="btn btn-light" href="contact.html#inquiry">Schedule a consultation</a>
+          <a class="btn-outline" href="#practices" style="color:#fff; border-color:rgba(255,255,255,0.5);">Explore our practices</a>
         </div>
         <div class="hero-meta">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>CPAs and Enrolled Agents</span>
@@ -205,7 +208,7 @@
           <li><div><h3>Specialists, not generalists</h3><p>Each practice does one thing and does it every day. Your return is prepared by people who work in that area full time.</p></div></li>
           <li><div><h3>One relationship</h3><p>When a business, a trust, and a building all belong to the same family, the practices coordinate internally. You manage one relationship.</p></div></li>
           <li><div><h3>Ahead of the deadline</h3><p>Bookkeeping stays current and projections run before year-end, so filing season confirms a plan instead of discovering a problem.</p></div></li>
-          <li><div><h3>Reviewed before it leaves</h3><p>Every return and filing is reviewed by a second professional before anything is submitted.</p></div></li>
+          <li><div><h3>Reviewed before it is filed</h3><p>Returns and filings are checked against the source documents before anything is submitted, and you see the result before we file.</p></div></li>
         </ol>
       </div>
     </div>
@@ -388,8 +391,9 @@
           <li><a href="contact.html">Contact us</a></li>
           <li><a href="contact.html#department">Message a department</a></li>
           <li><a href="contact.html#get-started">Become a client</a></li>
-          <li><a class="placeholder" href="tel:">[ add phone ]</a></li>
-          <li><a class="placeholder" href="mailto:">[ add email ]</a></li>
+          <li data-firm-row hidden><a href="tel:" data-firm="phone"></a></li>
+          <li data-firm-row hidden><a href="mailto:" data-firm="email"></a></li>
+          <li data-firm-row hidden><span data-firm="address"></span></li>
         </ul>
       </div>
       <div class="foot-col foot-news">
@@ -409,8 +413,7 @@
         <li><a href="privacy.html">Privacy &amp; Disclaimer</a></li>
         <li><a href="sitemap.xml">Sitemap</a></li>
       </ul>
-      <!-- LinkedIn: add the company page URL to href and remove the hidden attribute -->
-      <div class="foot-social" hidden><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="KMM Tax Group on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4v11H3zM10 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6v5.4h-4v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5v4.9H10z"/></svg></a></div>
+      <div class="foot-social" data-firm-row hidden><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="KMM Tax Group on LinkedIn" data-firm="linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4v11H3zM10 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6v5.4h-4v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5v4.9H10z"/></svg></a></div>
     </div>
   </div>
 </footer>
