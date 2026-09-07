@@ -23,7 +23,7 @@
 <meta name="theme-color" content="#0f3d24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -41,7 +41,6 @@
       <a class="topbar-phone" data-firm-row hidden href="tel:"><span data-firm="phone"></span></a>
       <a href="schedule.html">Schedule a consultation</a>
       <a href="contact.html#department">Message a department</a>
-      <a href="portal.html">Client Hub</a>
     </div>
   </div>
 </div>
@@ -109,7 +108,7 @@
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span aria-current="page">Client Hub</span></nav>
       <h1>Client Hub</h1>
-      <p class="lede">Each KMM practice runs its own secure client portal. Choose yours once and every button on this page, and across the site, points at the right one.</p>
+      <p class="lede">Each practice has its own secure portal. Choose yours to sign in, upload documents, pay an invoice, or send a message.</p>
     </div>
   </section>
 
@@ -127,7 +126,7 @@
         <span class="muted" data-firm-short></span>
         <span data-dept-contact-current class="muted"></span>
       </div>
-      <p class="muted" data-firm-when="unset" style="font-size:0.95rem; margin-top:1rem;">New to KMM and not sure which practice? <a href="index.html#finder" style="color:var(--green-700); font-weight:600;">Find your practice in three questions</a>, or choose any one above and we will route you.</p>
+      <p class="muted" data-firm-when="unset" style="font-size:0.95rem; margin-top:1rem;">New to KMM and not sure which practice? <a href="index.html#finder" style="color:var(--green-700); font-weight:600;">Find your practice in three questions</a>, or pick any one; that practice will pass you along if another is a better fit.</p>
 
       <div style="margin-top:3rem;" id="existing">
         <h2 style="margin-bottom:1.2rem;">Existing clients: your secure portal</h2>
@@ -143,7 +142,7 @@
         <h2 style="margin-bottom:1.2rem;">New clients: getting started</h2>
         <div class="hub-grid">
           <a class="hub-tile" data-firm-action="schedule" href="portal.html"><strong>Schedule a consultation</strong><span>An introductory conversation, at no charge.</span><small data-firm-note></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="hub-tile" data-firm-action="signup" href="portal.html"><strong>Become a client</strong><span>Create your account and start onboarding.</span><small data-firm-note></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="hub-tile" data-firm-action="signup" href="portal.html"><strong>Become a client</strong><span>Set up your portal account and send your first-year documents.</span><small data-firm-note></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="hub-tile" data-firm-action="message" href="portal.html"><strong>Send a question</strong><span>No account needed. Reaches the practice directly.</span><small data-firm-note></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
@@ -153,7 +152,7 @@
         <div class="hub-grid">
           <a class="hub-tile" href="tax-calendar.html"><strong>Tax calendar</strong><span>Federal deadlines, adjusted for weekends and holidays.</span><small></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="hub-tile" href="year-end-tax-checklist.html"><strong>Year-end checklist</strong><span>What to review before December 31.</span><small></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="hub-tile" href="insights.html"><strong>Insights</strong><span>Plain-language articles from each practice.</span><small></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="hub-tile" href="insights.html"><strong>Insights</strong><span>Short articles from each practice.</span><small></small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hub-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -219,11 +218,6 @@
           <label for="news-email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
           <input type="email" id="news-email" name="email" placeholder="Email address" required>
           <button class="btn" type="submit">Subscribe</button>
-          <div class="news-topics">
-            <label><input type="checkbox" name="topics" value="personal" checked> Personal &amp; estates</label>
-            <label><input type="checkbox" name="topics" value="business" checked> Business</label>
-            <label><input type="checkbox" name="topics" value="realestate" checked> Real estate</label>
-          </div>
         </form>
         <p class="news-ok">Thank you. You are on the list.</p>
       </div>

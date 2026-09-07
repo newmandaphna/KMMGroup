@@ -23,17 +23,17 @@
 <meta name="theme-color" content="#0f3d24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is the difference between the practices?", "acceptedAnswer": { "@type": "Answer", "text": "Each practice is a focused business. Klein Muskat handles personal income tax, trusts, and estates. Klein Mirsky handles business tax and year-round bookkeeping. Klein Real Estate handles the tax issues specific to property owners, investors, and real estate entities. Many clients work with more than one." } },
-    { "@type": "Question", "name": "I am not sure which practice I need. Where do I start?", "acceptedAnswer": { "@type": "Answer", "text": "Choose General inquiry in the contact form and describe your situation. We route you to the right practice, and if your needs span more than one, we coordinate internally so you manage a single relationship." } },
+    { "@type": "Question", "name": "What is the difference between the practices?", "acceptedAnswer": { "@type": "Answer", "text": "Each practice is a separate company. Klein Muskat handles personal income tax, trusts, and estates. Klein Mirsky handles business tax and year-round bookkeeping. Klein Real Estate handles the tax issues specific to property owners, investors, and real estate entities. Many clients work with more than one." } },
+    { "@type": "Question", "name": "I am not sure which practice I need. Where do I start?", "acceptedAnswer": { "@type": "Answer", "text": "Choose General inquiry and describe the situation. Whichever practice fits will reply. If two are needed, both will be on the file, and you will still deal with one person." } },
     { "@type": "Question", "name": "How do I share documents securely?", "acceptedAnswer": { "@type": "Answer", "text": "Each practice uses a secure client portal for document exchange, e-signatures, and messaging, reachable from the Client Login menu at the top of the site." } },
-    { "@type": "Question", "name": "Do you work with clients year round or only at tax time?", "acceptedAnswer": { "@type": "Answer", "text": "Year round. Our work is built around planning ahead of deadlines, with projections, bookkeeping, and strategy, so filing season is a confirmation rather than a scramble." } }
+    { "@type": "Question", "name": "Do you work with clients year round or only at tax time?", "acceptedAnswer": { "@type": "Answer", "text": "Year round. Bookkeeping, projections, and estimated payments run between filing seasons, and the portal is open all year." } }
   ]
 }
 </script>
@@ -53,7 +53,6 @@
       <a class="topbar-phone" data-firm-row hidden href="tel:"><span data-firm="phone"></span></a>
       <a href="schedule.html">Schedule a consultation</a>
       <a href="contact.html#department">Message a department</a>
-      <a href="portal.html">Client Hub</a>
     </div>
   </div>
 </div>
@@ -121,7 +120,7 @@
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span aria-current="page">Contact</span></nav>
       <h1>Contact us</h1>
-      <p class="lede">Tell us what you need and which practice fits. Your inquiry goes to that team directly, and someone will follow up.</p>
+      <p class="lede">Tell us what you need and which practice fits. Your message goes to that practice, and it replies by email.</p>
     </div>
   </section>
 
@@ -140,7 +139,7 @@
           </div>
 
           <h2 class="contact-practices-title" id="get-started">By practice</h2>
-          <p class="muted" style="font-size:0.95rem;">New clients: start with any practice. Existing clients: use your portal for documents and account messages.</p>
+          <p class="muted" style="font-size:0.95rem;">New clients: start with any practice. Existing clients: your portal is the place for documents and account messages.</p>
           <div class="dept-cards">
             <div class="dept-card" data-accent="muskat">
               <div><strong>Klein Muskat</strong><span>Personal, Trusts &amp; Estates</span><span data-dept-contact="klein-muskat" hidden style="display:block;"></span></div>
@@ -171,7 +170,7 @@
 
         <div id="inquiry">
           <form class="form-card" id="contactForm" method="post" action="#" novalidate>
-            <h2>Send an inquiry</h2>
+            <h2>Send a message</h2>
             <p>Your message goes directly to the practice you choose.</p>
             <div class="field"><label for="name">Full name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
             <div class="field-row">
@@ -194,11 +193,11 @@
             </div>
             <div class="field"><label for="referral">How did you hear about us? <small>(optional)</small></label><input type="text" id="referral" name="referral" placeholder="Referral, search, an advisor"></div>
             <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message" required></textarea></div>
-            <button type="submit" class="btn">Send inquiry</button>
-            <p class="form-error" id="formError">Something went wrong sending your message. Please try again or call the office.</p>
+            <button type="submit" class="btn">Send message</button>
+            <p class="form-error" id="formError">Something went wrong. Please try again in a few minutes.</p>
             <p class="form-note">We treat everything you send as confidential. Please do not include Social Security numbers, account numbers, or tax documents in this form. Sensitive material is exchanged only through your secure portal.</p>
           </form>
-          <div class="form-success" id="formSuccess"><h3>Thank you.</h3><p>Your inquiry has been received and routed to the practice you selected. Someone from that team will follow up.</p></div>
+          <div class="form-success" id="formSuccess"><h3>Thank you.</h3><p>Your message has gone to the practice you selected. They will reply by email.</p></div>
         </div>
       </div>
     </div>
@@ -209,13 +208,13 @@
     <div class="wrap">
       <div>
         <h2>Message a department</h2>
-        <p>Each KMM practice runs its own client desk. Choose a department and your message goes straight to that team, with no switchboard in between.</p>
+        <p>Your message goes to the practice you choose, not to a general inbox.</p>
       </div>
       <form class="dept-form" data-dept-router>
-        <label for="dept-select">Which department?</label>
+        <label for="dept-select">Which practice?</label>
         <div class="row">
           <select id="dept-select" name="department" required>
-            <option value="">Select a department</option>
+            <option value="">Select a practice</option>
             <option value="klein-muskat">Klein Muskat (Personal, Trusts &amp; Estates)</option>
             <option value="klein-mirsky">Klein Mirsky (Business Tax &amp; Bookkeeping)</option>
             <option value="klein-realestate">Klein Real Estate (Real Estate Tax)</option>
@@ -224,7 +223,7 @@
           <button class="btn" type="submit">Continue <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
         <p class="dept-desc"></p>
-        <small>Existing clients: use your practice's secure portal for documents and messages about your account. Prefer to talk? <a href="schedule.html" style="color:var(--green-700); font-weight:600;">Schedule a consultation</a>.</small>
+        <small>Existing clients: use your practice's portal for documents and messages about your account.</small>
       </form>
     </div>
   </section>
@@ -233,10 +232,10 @@
     <div class="wrap narrow">
       <div class="section-head"><div><h2>Common questions</h2></div></div>
       <div class="prose" style="max-width:none;">
-        <h3 style="margin-top:1.6rem;">What is the difference between the practices?</h3><p style="font-size:1rem;">Each practice is a focused business. <strong>Klein Muskat</strong> handles personal income tax, trusts, and estates. <strong>Klein Mirsky</strong> handles business tax and year-round bookkeeping. <strong>Klein Real Estate</strong> handles the tax issues specific to property owners, investors, and real estate entities. Many clients work with more than one.</p>
-        <h3 style="margin-top:1.6rem;">I am not sure which practice I need. Where do I start?</h3><p style="font-size:1rem;">Choose <strong>General inquiry</strong> in the form and describe your situation. We route you to the right practice, and if your needs span more than one, we coordinate internally so you manage a single relationship.</p>
+        <h3 style="margin-top:1.6rem;">What is the difference between the practices?</h3><p style="font-size:1rem;">Each practice is a separate company. <strong>Klein Muskat</strong> handles personal income tax, trusts, and estates. <strong>Klein Mirsky</strong> handles business tax and year-round bookkeeping. <strong>Klein Real Estate</strong> handles the tax issues specific to property owners, investors, and real estate entities. Many clients work with more than one.</p>
+        <h3 style="margin-top:1.6rem;">I am not sure which practice I need. Where do I start?</h3><p style="font-size:1rem;">Choose General inquiry and describe the situation. Whichever practice fits will reply. If two are needed, both will be on the file, and you will still deal with one person.</p>
         <h3 style="margin-top:1.6rem;">How do I share documents securely?</h3><p style="font-size:1rem;">Each practice uses a secure client portal for document exchange, e-signatures, and messaging. You can reach your portal any time from the <strong>Client Login</strong> menu at the top of the site. Please do not send tax documents through this form.</p>
-        <h3 style="margin-top:1.6rem;">Do you work with clients year round or only at tax time?</h3><p style="font-size:1rem;">Year round. Our work is built around planning ahead of deadlines, with projections, bookkeeping, and strategy, so filing season is a confirmation rather than a scramble.</p>
+        <h3 style="margin-top:1.6rem;">Do you work with clients year round or only at tax time?</h3><p style="font-size:1rem;">Year round. Bookkeeping, projections, and estimated payments run between filing seasons, and the portal is open all year.</p>
       </div>
     </div>
   </section>
@@ -287,11 +286,6 @@
           <label for="news-email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
           <input type="email" id="news-email" name="email" placeholder="Email address" required>
           <button class="btn" type="submit">Subscribe</button>
-          <div class="news-topics">
-            <label><input type="checkbox" name="topics" value="personal" checked> Personal &amp; estates</label>
-            <label><input type="checkbox" name="topics" value="business" checked> Business</label>
-            <label><input type="checkbox" name="topics" value="realestate" checked> Real estate</label>
-          </div>
         </form>
         <p class="news-ok">Thank you. You are on the list.</p>
       </div>

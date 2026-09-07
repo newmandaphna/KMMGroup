@@ -23,7 +23,7 @@
 <meta name="theme-color" content="#0f3d24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -41,7 +41,6 @@
       <a class="topbar-phone" data-firm-row hidden href="tel:"><span data-firm="phone"></span></a>
       <a href="schedule.html">Schedule a consultation</a>
       <a href="contact.html#department">Message a department</a>
-      <a href="portal.html">Client Hub</a>
     </div>
   </div>
 </div>
@@ -109,13 +108,13 @@
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span aria-current="page">Schedule a consultation</span></nav>
       <h1>Schedule a consultation</h1>
-      <p class="lede">An introductory conversation with the practice that fits your situation, at no charge. Choose the practice, then pick a time. If you are not sure which practice, choose any one and we will route you.</p>
+      <p class="lede">An introductory conversation with the practice that fits your situation, at no charge. Choose the practice, then pick a time. If you are not sure which practice, choose any one; if another is the better fit, they will hand you over.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap narrow">
-      <h2 style="margin-bottom:1.2rem;">1. Which practice do you want to meet with?</h2>
+      <h2 style="margin-bottom:1.2rem;">Which practice do you want to meet with?</h2>
       
       <div class="firm-picks" role="group" aria-label="Choose your practice">
         <button type="button" class="firm-pick" data-accent="muskat" data-firm-pick="klein-muskat" aria-pressed="false"><span><strong>Klein Muskat</strong><span>Personal, Trusts &amp; Estates</span></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 12 3 3 5-6"/></svg></i></button>
@@ -125,7 +124,7 @@
       <p class="muted" style="font-size:0.9rem; margin-top:0.9rem;">Not sure? <a href="index.html#finder" style="color:var(--green-700); font-weight:600;">Answer three quick questions</a> and we will point you to the right one.</p>
 
       <div style="margin-top:3rem;" data-firm-when="set" hidden>
-        <h2 style="margin-bottom:1.2rem;">2. Pick a time with <span data-firm-name>your practice</span></h2>
+        <h2 style="margin-bottom:1.2rem;">Pick a time with <span data-firm-name>your practice</span></h2>
 
         <div class="embed" data-firm-embed hidden>
           <iframe title="Booking calendar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -167,31 +166,17 @@
             </div>
             <div class="field"><label for="sch-topic">What would you like to discuss?</label><textarea id="sch-topic" name="message" required></textarea></div>
             <button type="submit" class="btn">Request a time</button>
-            <p class="form-error" id="scheduleError">Something went wrong sending your request. Please try again or call the office.</p>
+            <p class="form-error" id="scheduleError">Something went wrong. Please try again in a few minutes.</p>
             <p class="form-note">No documents needed for the first conversation. Please do not include Social Security numbers or account numbers in this form.</p>
           </form>
           <div class="form-success" id="scheduleSuccess"><h3>Request received.</h3><p><span data-firm-name>The practice</span> will confirm a time by email. If you already have a portal account, you can also message the team there.</p></div>
         </div>
 
-        <div class="expect">
-          <div><strong>30 minutes</strong>An introductory call to understand your situation and whether we are the right fit.</div>
-          <div><strong>No charge</strong>You pay nothing to find out which practice you need.</div>
-          <div><strong>What to bring</strong>Nothing. If it helps, last year's return and a list of questions.</div>
-        </div>
+        <p class="muted" style="margin-top:1.5rem; font-size:0.95rem;">First conversations run about 30 minutes by phone or video, at no charge. Bring nothing; last year's return helps if you have it. Fees are quoted in the engagement letter afterward.</p>
       </div>
     </div>
   </section>
 
-  
-  <section class="cta-band">
-    <div class="wrap">
-      <div><h2>Already a client?</h2><p>Your practice's portal is the fastest way to send documents or message your team.</p></div>
-      <div class="cta-actions">
-        <a class="btn" href="portal.html">Client Hub</a>
-        <a class="btn-outline" href="contact.html#department">Message a department</a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
@@ -239,11 +224,6 @@
           <label for="news-email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
           <input type="email" id="news-email" name="email" placeholder="Email address" required>
           <button class="btn" type="submit">Subscribe</button>
-          <div class="news-topics">
-            <label><input type="checkbox" name="topics" value="personal" checked> Personal &amp; estates</label>
-            <label><input type="checkbox" name="topics" value="business" checked> Business</label>
-            <label><input type="checkbox" name="topics" value="realestate" checked> Real estate</label>
-          </div>
         </form>
         <p class="news-ok">Thank you. You are on the list.</p>
       </div>
