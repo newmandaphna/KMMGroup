@@ -1,24 +1,24 @@
 /* ============================================================
    KMM TAX GROUP  |  department directory (single source of truth)
 
-   Every division of the firm runs its own practice-management
+   Every practice of the firm runs its own practice-management
    account (TaxDome for some, a separate portal for others). This
    file is the one place to wire those endpoints. The site reads it
    at load time and lights up "Client Login", "Become a client", and
    "Message a department" links wherever they appear.
 
-   To connect a division:
+   To connect a practice:
      portal   : client login URL (TaxDome or other portal)
      signup   : TaxDome "Client signup" public form URL
      message  : URL new inquiries should go to (e.g. a TaxDome
                 contact form). Leave blank to route to the site's
-                own contact form with the division preselected.
+                own contact form with the practice preselected.
      schedule : booking page URL (TaxDome scheduling, Calendly, etc.).
                 Leave blank and "Schedule a consultation" shows a
-                request-a-time form routed to the division instead.
+                request-a-time form routed to the practice instead.
      pay      : invoice payment URL. Leave blank to fall back to the
                 portal login.
-     formEndpoint : optional per-division form endpoint (Formspree
+     formEndpoint : optional per-practice form endpoint (Formspree
                 or any endpoint that accepts a POST). Leave blank to
                 use the shared endpoint below.
      email / phone : optional; shown on the contact page when set.
@@ -102,7 +102,7 @@ window.KMM.departments = [
   {
     id: "general",
     name: "General inquiry",
-    short: "Not sure which division",
+    short: "Not sure which practice",
     accent: "",
     page: "/contact",
     description: "Tell us about your situation and we will route it to the right practice.",
