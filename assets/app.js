@@ -508,7 +508,7 @@
         var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//KMM Tax Group//Tax Calendar//EN", "CALSCALE:GREGORIAN"];
         items.forEach(function (x, i) {
           var end = new Date(x.date); end.setDate(end.getDate() + 1);
-          lines.push("BEGIN:VEVENT", "UID:kmm-" + fmt(x.date) + "-" + i + "@kmmtaxgroup", "DTSTAMP:" + fmt(t) + "T000000Z",
+          lines.push("BEGIN:VEVENT", "UID:kmm-" + fmt(x.date) + "-" + i + "@kmmcpagroup.com", "DTSTAMP:" + fmt(t) + "T000000Z",
             "DTSTART;VALUE=DATE:" + fmt(x.date), "DTEND;VALUE=DATE:" + fmt(end),
             "SUMMARY:" + x.what.replace(/,/g, "\\,"), "DESCRIPTION:" + x.detail.replace(/,/g, "\\,") + " (KMM Tax Group tax calendar)", "END:VEVENT");
         });
