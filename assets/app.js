@@ -283,6 +283,7 @@
     var error = qs("#formError");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!form.reportValidity()) return; // browser shows which required field is missing
       var d = sel ? dept(sel.value) : null;
       var endpoint = (d && isConfigured(d.formEndpoint)) ? d.formEndpoint : (isConfigured(CONFIG.formEndpoint) ? CONFIG.formEndpoint : "");
       var done = function () { form.hidden = true; if (success) { success.classList.add("show"); success.scrollIntoView({ block: "center" }); } };
@@ -307,6 +308,7 @@
     var success = qs("#scheduleSuccess"), error = qs("#scheduleError");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!form.reportValidity()) return;
       var d = sel ? dept(sel.value) : null;
       if (!d) { if (sel) sel.focus(); return; }
       firmSet(d.id);
