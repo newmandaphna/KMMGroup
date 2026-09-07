@@ -24,7 +24,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python3 -m http.server 5000 --bind 0.0.0.0"
+args = "python3 serve.py 5000"
 waitForPort = 5000
 
 [workflows.workflow.metadata]
@@ -37,3 +37,197 @@ externalPort = 80
 [deployment]
 deploymentTarget = "static"
 publicDir = "."
+
+# BEGIN generated rewrites (clean URLs; written by the page build, do not edit by hand)
+[[deployment.rewrites]]
+from = "/klein-muskat"
+to = "/klein-muskat.html"
+
+[[deployment.rewrites]]
+from = "/klein-muskat/"
+to = "/klein-muskat.html"
+
+[[deployment.rewrites]]
+from = "/klein-mirsky"
+to = "/klein-mirsky.html"
+
+[[deployment.rewrites]]
+from = "/klein-mirsky/"
+to = "/klein-mirsky.html"
+
+[[deployment.rewrites]]
+from = "/klein-realestate"
+to = "/klein-realestate.html"
+
+[[deployment.rewrites]]
+from = "/klein-realestate/"
+to = "/klein-realestate.html"
+
+[[deployment.rewrites]]
+from = "/services"
+to = "/services.html"
+
+[[deployment.rewrites]]
+from = "/services/"
+to = "/services.html"
+
+[[deployment.rewrites]]
+from = "/industries"
+to = "/industries.html"
+
+[[deployment.rewrites]]
+from = "/industries/"
+to = "/industries.html"
+
+[[deployment.rewrites]]
+from = "/insights"
+to = "/insights.html"
+
+[[deployment.rewrites]]
+from = "/insights/"
+to = "/insights.html"
+
+[[deployment.rewrites]]
+from = "/insights-trust-tax-return"
+to = "/insights-trust-tax-return.html"
+
+[[deployment.rewrites]]
+from = "/insights-trust-tax-return/"
+to = "/insights-trust-tax-return.html"
+
+[[deployment.rewrites]]
+from = "/insights-s-corp-vs-llc"
+to = "/insights-s-corp-vs-llc.html"
+
+[[deployment.rewrites]]
+from = "/insights-s-corp-vs-llc/"
+to = "/insights-s-corp-vs-llc.html"
+
+[[deployment.rewrites]]
+from = "/insights-1031-exchange"
+to = "/insights-1031-exchange.html"
+
+[[deployment.rewrites]]
+from = "/insights-1031-exchange/"
+to = "/insights-1031-exchange.html"
+
+[[deployment.rewrites]]
+from = "/insights-executor-first-90-days"
+to = "/insights-executor-first-90-days.html"
+
+[[deployment.rewrites]]
+from = "/insights-executor-first-90-days/"
+to = "/insights-executor-first-90-days.html"
+
+[[deployment.rewrites]]
+from = "/insights-gift-tax-form-709"
+to = "/insights-gift-tax-form-709.html"
+
+[[deployment.rewrites]]
+from = "/insights-gift-tax-form-709/"
+to = "/insights-gift-tax-form-709.html"
+
+[[deployment.rewrites]]
+from = "/insights-reasonable-compensation"
+to = "/insights-reasonable-compensation.html"
+
+[[deployment.rewrites]]
+from = "/insights-reasonable-compensation/"
+to = "/insights-reasonable-compensation.html"
+
+[[deployment.rewrites]]
+from = "/insights-monthly-close"
+to = "/insights-monthly-close.html"
+
+[[deployment.rewrites]]
+from = "/insights-monthly-close/"
+to = "/insights-monthly-close.html"
+
+[[deployment.rewrites]]
+from = "/insights-cost-segregation"
+to = "/insights-cost-segregation.html"
+
+[[deployment.rewrites]]
+from = "/insights-cost-segregation/"
+to = "/insights-cost-segregation.html"
+
+[[deployment.rewrites]]
+from = "/insights-passive-activity-rules"
+to = "/insights-passive-activity-rules.html"
+
+[[deployment.rewrites]]
+from = "/insights-passive-activity-rules/"
+to = "/insights-passive-activity-rules.html"
+
+[[deployment.rewrites]]
+from = "/year-end-tax-checklist"
+to = "/year-end-tax-checklist.html"
+
+[[deployment.rewrites]]
+from = "/year-end-tax-checklist/"
+to = "/year-end-tax-checklist.html"
+
+[[deployment.rewrites]]
+from = "/tax-calendar"
+to = "/tax-calendar.html"
+
+[[deployment.rewrites]]
+from = "/tax-calendar/"
+to = "/tax-calendar.html"
+
+[[deployment.rewrites]]
+from = "/about"
+to = "/about.html"
+
+[[deployment.rewrites]]
+from = "/about/"
+to = "/about.html"
+
+[[deployment.rewrites]]
+from = "/careers"
+to = "/careers.html"
+
+[[deployment.rewrites]]
+from = "/careers/"
+to = "/careers.html"
+
+[[deployment.rewrites]]
+from = "/contact"
+to = "/contact.html"
+
+[[deployment.rewrites]]
+from = "/contact/"
+to = "/contact.html"
+
+[[deployment.rewrites]]
+from = "/privacy"
+to = "/privacy.html"
+
+[[deployment.rewrites]]
+from = "/privacy/"
+to = "/privacy.html"
+
+[[deployment.rewrites]]
+from = "/schedule"
+to = "/schedule.html"
+
+[[deployment.rewrites]]
+from = "/schedule/"
+to = "/schedule.html"
+
+[[deployment.rewrites]]
+from = "/portal"
+to = "/portal.html"
+
+[[deployment.rewrites]]
+from = "/portal/"
+to = "/portal.html"
+
+[[deployment.rewrites]]
+from = "/login"
+to = "/login.html"
+
+[[deployment.rewrites]]
+from = "/login/"
+to = "/login.html"
+# END generated rewrites

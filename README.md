@@ -60,7 +60,11 @@ See `TAXDOME-SETUP.md` for how to get the signup URLs and pipelines from each Ta
 
 ## Viewing the site
 
-Open `index.html` in a browser, or serve the folder (`python3 -m http.server 5000`) for the cleanest experience. Everything works as plain files.
+Run `python3 serve.py 5000` and open http://localhost:5000/. The pages are plain files, but links use clean URLs (`/services`, `/klein-mirsky`, `/` for home), so a server that maps `/services` to `services.html` is needed. `serve.py` does that, serves `404.html` with a real 404 status for unknown paths, and is what the Replit preview runs.
+
+## URLs
+
+Every page is reachable at its file name without the extension: `/services`, `/services/`, and `/services.html` all serve the same page, and the canonical URL in the page head is the clean form. In production the Replit static deployment does this through the `[[deployment.rewrites]]` rules at the end of `.replit`, which the page build regenerates from the page list. Asset paths are root-relative (`/assets/...`) so the trailing-slash form works too. Keep in-site links in the clean form (`href="/contact?division=klein-mirsky#inquiry"`); the `page` field in `assets/departments.js` uses the same form.
 
 ## Before launch
 

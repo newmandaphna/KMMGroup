@@ -36,6 +36,7 @@ Nothing on the public site shows a placeholder. Missing details are hidden until
 
 ## 6. Deploy (Replit)
 - [ ] Static deployment, public directory = repo root. No build command.
+- [ ] On the live domain, open `/services`, `/services/`, `/klein-mirsky`, and a made-up path. The first three should show the page at that address; the last should show the "Page not found" page.
 - [ ] Confirm unknown URLs serve `404.html`.
 
 ## Already built
