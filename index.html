@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KMM Tax Group | Personal, Business & Real Estate Tax Specialists</title>
-<meta name="description" content="KMM Tax Group is a firm of three specialized tax practices: Klein Muskat for personal tax, trusts and estates; Klein Mirsky for business tax and bookkeeping; and Klein Real Estate for property owners and investors.">
+<meta name="description" content="Three specialized tax practices under one firm: Klein Muskat for personal tax and estates, Klein Mirsky for business tax and bookkeeping, Klein Real Estate for property.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.kmmtaxgroup.com/">
 <meta property="og:type" content="website">
@@ -106,7 +106,7 @@
             <a href="https://kleintaxgroup.taxdome.com/" target="_blank" rel="noopener noreferrer" data-dept="klein-muskat" data-dept-link="portal">Klein Muskat<small>Personal, Trusts &amp; Estates</small></a>
             <a href="https://www.kleinmirsky.com/login" target="_blank" rel="noopener noreferrer" data-dept="klein-mirsky" data-dept-link="portal">Klein Mirsky<small>Business Tax &amp; Bookkeeping</small></a>
             <a class="is-disabled" aria-disabled="true" href="contact.html?division=klein-realestate" data-dept="klein-realestate" data-dept-link="portal">Klein Real Estate<small>Portal coming soon</small></a>
-          <div class="dd-foot"><a href="portal.html" style="display:inline; padding:0; color:var(--green-700); font-weight:600;">Client Hub</a>: documents, invoices, messages, scheduling. New to KMM? <a href="schedule.html" style="display:inline; padding:0; color:var(--green-700); font-weight:600;">Schedule a consultation</a></div>
+          <div class="dd-foot"><a href="portal.html" style="display:inline; padding:0; color:var(--green-700); font-weight:600;">Client Hub</a>: documents, <a href="portal.html#existing" style="display:inline; padding:0; color:var(--green-700); font-weight:600;">pay an invoice</a>, messages, scheduling. New to KMM? <a href="schedule.html" style="display:inline; padding:0; color:var(--green-700); font-weight:600;">Schedule a consultation</a></div>
         </div>
       </li>
       <li class="nav-mobile-cta"><a class="btn" href="contact.html">Contact us</a></li>
@@ -138,7 +138,7 @@
         </div>
       </div>
       <aside class="quick-panel" aria-label="Quick access">
-        <div class="qp-head"><h3>Quick access</h3></div>
+        <div class="qp-head"><p class="qp-title">Quick access</p></div>
         <ul class="qp-list">
           <li><a href="https://kleintaxgroup.taxdome.com/" target="_blank" rel="noopener noreferrer" data-dept="klein-muskat" data-dept-link="portal"><span class="qp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="qp-text"><strong>Klein Muskat client login</strong><span>Personal, Trusts &amp; Estates</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="qp-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
           <li><a href="https://www.kleinmirsky.com/login" target="_blank" rel="noopener noreferrer" data-dept="klein-mirsky" data-dept-link="portal"><span class="qp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="qp-text"><strong>Klein Mirsky client login</strong><span>Business Tax &amp; Bookkeeping</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="qp-go"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
@@ -369,7 +369,7 @@
         <p>A firm of specialized tax practices serving individuals, businesses, and real estate owners. Each practice is a KMM Tax Group company.</p>
       </div>
       <div class="foot-col">
-        <h5>Practices</h5>
+        <p class="foot-h">Practices</p>
         <ul>
           <li><a href="klein-muskat.html">Klein Muskat<span class="sub">Personal, Trusts &amp; Estates</span></a></li>
           <li><a href="klein-mirsky.html">Klein Mirsky<span class="sub">Business Tax &amp; Bookkeeping</span></a></li>
@@ -377,7 +377,7 @@
         </ul>
       </div>
       <div class="foot-col">
-        <h5>Firm</h5>
+        <p class="foot-h">Firm</p>
         <ul>
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
@@ -388,7 +388,7 @@
         </ul>
       </div>
       <div class="foot-col">
-        <h5>Contact</h5>
+        <p class="foot-h">Contact</p>
         <ul>
           <li><a href="contact.html">Contact us</a></li>
           <li><a href="contact.html#department">Message a department</a></li>
@@ -400,12 +400,17 @@
         </ul>
       </div>
       <div class="foot-col foot-news">
-        <h5>Stay informed</h5>
+        <p class="foot-h">Stay informed</p>
         <p>Deadline reminders and planning notes, a few times a year.</p>
         <form data-newsletter method="post" action="#">
           <label for="news-email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
           <input type="email" id="news-email" name="email" placeholder="Email address" required>
           <button class="btn" type="submit">Subscribe</button>
+          <div class="news-topics">
+            <label><input type="checkbox" name="topics" value="personal" checked> Personal &amp; estates</label>
+            <label><input type="checkbox" name="topics" value="business" checked> Business</label>
+            <label><input type="checkbox" name="topics" value="realestate" checked> Real estate</label>
+          </div>
         </form>
         <p class="news-ok">Thank you. You are on the list.</p>
       </div>
