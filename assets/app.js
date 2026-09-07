@@ -240,6 +240,9 @@
       else { el.innerHTML = esc(val).replace(/\n/g, "<br>"); }
     });
     qsa("[data-firm-section]").forEach(function (el) { el.hidden = !any; });
+    // Optional hero photograph: set KMM.config.firm.heroImage to a path under assets/ and it replaces the quick-access panel.
+    var hero = qs(".hero"), heroImg = qs("[data-hero-photo]");
+    if (hero && heroImg && F.heroImage) { heroImg.setAttribute("src", F.heroImage); heroImg.setAttribute("alt", F.heroImageAlt || ""); hero.classList.add("has-photo"); }
   })();
 
   /* ---------- Message a department (routing) ----------
@@ -447,7 +450,7 @@
     list.innerHTML = all.slice(0, n).map(function (x) {
       var du = daysUntil(x.date);
       var when = du === 0 ? "Today" : du === 1 ? "Tomorrow" : "In " + du + " days";
-      return '<li><div class="dl-date"><b>' + MON[x.date.getMonth()] + " " + x.date.getDate() + "</b><small>" + x.date.getFullYear() + "</small></div>" +
+      return '<li><div class="dl-date"><b>' + MON[x.date.getMonth()] + " " + x.date.getDate() + "</b>" + (x.date.getFullYear() !== y ? "<small>" + x.date.getFullYear() + "</small>" : "") + "</div>" +
         '<div class="dl-what"><strong>' + esc(x.what) + "</strong><span>" + esc(x.detail) + "</span></div>" +
         '<span class="dl-in' + (du <= 14 ? " soon" : "") + '">' + when + "</span></li>";
     }).join("");
@@ -460,7 +463,7 @@
     var t = today(), y = t.getFullYear();
     var filters = qs("[data-cal-filters]");
     var yearLabel = qsa("[data-cal-year]");
-    yearLabel.forEach(function (el) { el.textContent = y + " and " + (y + 1); });
+    yearLabel.forEach(function (el) { el.textContent = y + "\u00a0and\u00a0" + (y + 1); });
     var active = "all";
     function render() {
       var items = deadlinesFor(y).concat(deadlinesFor(y + 1)).filter(function (x) { return active === "all" || x.tags.indexOf(active) !== -1; });
@@ -532,7 +535,7 @@
       "klein-muskat": { tag: "Recommended practice", title: "Klein Muskat", body: "Personal income tax, trusts, and estates. This practice handles individual and family returns, fiduciary filings, and the tax side of transferring wealth.", page: "klein-muskat.html" },
       "klein-mirsky": { tag: "Recommended practice", title: "Klein Mirsky", body: "Business tax and year-round bookkeeping. This practice keeps the books current and files business returns, payroll, and sales tax for owner-operated companies.", page: "klein-mirsky.html" },
       "klein-realestate": { tag: "Recommended practice", title: "Klein Real Estate", body: "Tax for investors, partnerships, and property entities: depreciation strategy, exchanges, cost segregation, and investor reporting.", page: "klein-realestate.html" },
-      "multi": { tag: "More than one practice", title: "Coordinated service", body: "Your situation spans more than one practice. Start with a general inquiry and we will bring in the right specialists from each division.", page: "contact.html?division=general" }
+      "multi": { tag: "More than one practice", title: "Coordinated service", body: "Your situation spans more than one practice. Start with a general inquiry and we will bring in the right people from each practice.", page: "contact.html?division=general" }
     };
     function reset() {
       scores = { "klein-muskat": 0, "klein-mirsky": 0, "klein-realestate": 0 };
