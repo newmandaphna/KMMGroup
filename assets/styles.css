@@ -166,7 +166,6 @@ li.open > .dropdown { opacity: 1; visibility: visible; transform: none; }
 .dropdown a:hover { background: var(--tint); }
 .dropdown a small { font-size: 0.78rem; font-weight: 400; color: var(--muted); }
 .dropdown a.is-disabled { pointer-events: none; opacity: 0.55; }
-.dropdown .dd-foot { border-top: 1px solid var(--line-soft); margin-top: 0.4rem; padding: 0.7rem 0.85rem 0.3rem; font-size: 0.8rem; color: var(--muted); }
 
 /* mega menu (services) */
 .mega { position: absolute; left: 50%; transform: translate(-50%, -6px); top: calc(100% + 10px); width: min(1100px, calc(100vw - 2rem)); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index: 600; }
