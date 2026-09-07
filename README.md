@@ -24,6 +24,8 @@ KMMGroup/
 ├── tax-calendar.html           Federal deadlines computed for this year and next, .ics export
 ├── about.html                  Firm story, practices, process, leadership
 ├── careers.html                Careers page (openings block is commented out until needed)
+├── schedule.html               Schedule a consultation: pick a practice, then its booking calendar or a request-a-time form
+├── portal.html                 Client Hub: pick a practice once; login, upload, pay, message, schedule, sign-up all point at it
 ├── contact.html                Inquiry form, practice cards, message a department, FAQ
 ├── privacy.html                Privacy policy and disclaimer (template)
 ├── 404.html                    Not-found page
@@ -44,8 +46,12 @@ Every practice runs its own practice-management account (TaxDome for some, a sep
 | `portal` | "Client Login" links for that practice point here (nav, home quick access, practice page, contact page). Leave blank and the link shows "Portal coming soon". |
 | `signup` | "Become a client" buttons for that practice go straight to the TaxDome client-signup form. Blank = they open the site inquiry form with the practice preselected. |
 | `message` | "Message a department" sends the visitor here (for example a TaxDome contact form for that practice). Blank = the site contact form with the practice preselected. |
+| `schedule` | Booking page URL (TaxDome scheduling, Calendly, or similar). When set, `schedule.html` embeds it for that practice and every "Schedule a consultation" button opens it. Blank = a request-a-time form routed to the practice. |
+| `pay` | Invoice payment URL. Blank = falls back to the portal login. |
 | `formEndpoint` | Inquiries for that practice POST to this endpoint (a per-practice Formspree form, a Zapier webhook, or any endpoint). Blank = the shared endpoint in `KMM.config.formEndpoint`. |
 | `email`, `phone` | Shown on the practice card on the contact page and in the practice page sidebar when set. |
+
+**Practice memory.** A visitor picks a practice once (on the Client Hub, the scheduling page, the department selector, or the contact form) and the site remembers it in the browser. Every element marked `data-firm-action="portal|signup|schedule|message|pay"` then points at that practice's own account, so the whole site behaves as if it belonged to the practice the visitor chose. A `?division=klein-mirsky` query on any URL sets it too, which lets each practice hand out links that pre-select themselves.
 
 `KMM.config` at the top of the same file holds the firm-wide contact details (phone, email, address, hours, LinkedIn), the shared form endpoint, the newsletter endpoint, and the careers inbox. Contact details render into the header, footer, and contact page as soon as they are set and stay hidden until then. Until a form endpoint is set, forms show an on-screen confirmation and send nothing.
 
