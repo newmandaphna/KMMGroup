@@ -22,7 +22,7 @@ Nothing on the public site shows a placeholder. Missing details are hidden until
 
 ## 3. Domain and SEO
 - [x] Live domain `kmmcpagroup.com` is set in every page head (canonical and Open Graph), the JSON-LD, `sitemap.xml`, and `robots.txt`. If the site will be served from `www.kmmcpagroup.com` instead, change `SITE` in the generator and rebuild.
-- [ ] Point `kmmcpagroup.com` at the Replit deployment (Replit: Deployments, Settings, Link a domain; add the A and TXT records it gives you at the registrar). Keep the old host live until the records propagate.
+- [x] `kmmcpagroup.com` is linked to the Replit deployment; publishing from Replit updates the live domain directly.
 - [ ] List the old site's page URLs and add a 301 redirect for each one that has a counterpart here, so existing search rankings and bookmarks carry over.
 - [ ] Verify the new domain in Google Search Console and submit `sitemap.xml`.
 - [ ] Submit `sitemap.xml` in Google Search Console after deploy.
