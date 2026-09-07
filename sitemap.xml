@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace www.kmmtaxgroup.com with the live domain, then resubmit in Google Search Console -->
+<!-- Live domain: kmmcpagroup.com. Resubmit in Google Search Console after each launch -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.kmmtaxgroup.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/klein-muskat.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/klein-mirsky.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/klein-realestate.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/industries.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-trust-tax-return.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-s-corp-vs-llc.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-1031-exchange.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-executor-first-90-days.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-gift-tax-form-709.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-reasonable-compensation.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-monthly-close.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-cost-segregation.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/insights-passive-activity-rules.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/year-end-tax-checklist.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/tax-calendar.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/careers.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/schedule.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/portal.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kmmtaxgroup.com/login.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kmmcpagroup.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://kmmcpagroup.com/klein-muskat.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kmmcpagroup.com/klein-mirsky.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kmmcpagroup.com/klein-realestate.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kmmcpagroup.com/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kmmcpagroup.com/industries.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-trust-tax-return.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-s-corp-vs-llc.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-1031-exchange.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-executor-first-90-days.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-gift-tax-form-709.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-reasonable-compensation.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-monthly-close.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-cost-segregation.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/insights-passive-activity-rules.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/year-end-tax-checklist.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/tax-calendar.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kmmcpagroup.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kmmcpagroup.com/careers.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kmmcpagroup.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kmmcpagroup.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://kmmcpagroup.com/schedule.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kmmcpagroup.com/portal.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kmmcpagroup.com/login.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

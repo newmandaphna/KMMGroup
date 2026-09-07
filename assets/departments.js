@@ -35,7 +35,7 @@ window.KMM.config = {
      contact page as soon as it is filled in; blank fields stay hidden. */
   firm: {
     phone: "",        /* e.g. "(212) 555-0100" */
-    email: "",        /* e.g. "info@kmmtaxgroup.com" */
+    email: "",        /* e.g. "info@kmmcpagroup.com" */
     address: "",      /* one line, or use \n for a line break */
     hours: "",        /* e.g. "Monday to Friday, 9am to 5pm" */
     linkedin: "",     /* company page URL; the footer icon appears when set */
