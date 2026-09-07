@@ -240,6 +240,9 @@
       else { el.innerHTML = esc(val).replace(/\n/g, "<br>"); }
     });
     qsa("[data-firm-section]").forEach(function (el) { el.hidden = !any; });
+    // Optional hero photograph: set KMM.config.firm.heroImage to a path under assets/ and it replaces the quick-access panel.
+    var hero = qs(".hero"), heroImg = qs("[data-hero-photo]");
+    if (hero && heroImg && F.heroImage) { heroImg.setAttribute("src", F.heroImage); heroImg.setAttribute("alt", F.heroImageAlt || ""); hero.classList.add("has-photo"); }
   })();
 
   /* ---------- Message a department (routing) ----------

@@ -38,7 +38,9 @@ window.KMM.config = {
     email: "",        /* e.g. "info@kmmtaxgroup.com" */
     address: "",      /* one line, or use \n for a line break */
     hours: "",        /* e.g. "Monday to Friday, 9am to 5pm" */
-    linkedin: ""      /* company page URL; the footer icon appears when set */
+    linkedin: "",     /* company page URL; the footer icon appears when set */
+    heroImage: "",    /* e.g. "assets/photos/office.jpg"; replaces the quick-access panel in the home hero */
+    heroImageAlt: ""  /* short description of that photograph */
   },
   /* Shared contact-form endpoint (create a form at formspree.io and paste its URL). */
   formEndpoint: "",
