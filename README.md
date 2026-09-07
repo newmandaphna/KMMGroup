@@ -25,6 +25,7 @@ KMMGroup/
 ├── about.html                  Firm story, practices, process, leadership
 ├── careers.html                Careers page (openings block is commented out until needed)
 ├── schedule.html               Schedule a consultation: pick a practice, then its booking calendar or a request-a-time form
+├── login.html                  Client login: pick a practice from a dropdown, continue to that practice's own TaxDome login page
 ├── portal.html                 Client Hub: pick a practice once; login, upload, pay, message, schedule, sign-up all point at it
 ├── contact.html                Inquiry form, practice cards, message a department, FAQ
 ├── privacy.html                Privacy policy and disclaimer (template)
