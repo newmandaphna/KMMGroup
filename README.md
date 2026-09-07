@@ -58,6 +58,19 @@ Every practice runs its own practice-management account (TaxDome for some, a sep
 
 See `TAXDOME-SETUP.md` for how to get the signup URLs and pipelines from each TaxDome account.
 
+## How the inquiry form will send (not wired yet)
+
+Every form on the site (contact, schedule request, newsletter, checklist) posts its fields with `fetch` and `Accept: application/json` to an endpoint from `assets/departments.js`: the chosen practice's `formEndpoint` when set, otherwise `KMM.config.formEndpoint`. Until an endpoint is set, forms confirm on screen and send nothing.
+
+Planned wiring, in order:
+
+1. Create four forms at formspree.io: one per practice and one for General inquiry. Set each form's notification address to that practice's inbox. Formspree uses the visitor's `email` field as the reply-to.
+2. Paste the four endpoint URLs into `assets/departments.js`: each practice's `formEndpoint`, and the General one into `KMM.config.formEndpoint`.
+3. Site side (small): add a hidden `_subject` built from the practice and the visitor's name, a `form` field (`contact` or `schedule`) so the two forms are distinguishable in the inbox, a `_gotcha` honeypot against spam, and the page URL. The on-screen success and error states already exist.
+4. Submit one test per practice and confirm each inbox receives it.
+
+Later options: a Zapier or Make webhook that creates the lead in TaxDome, or pointing `message` and `signup` at TaxDome's own forms through the fields that already exist for that.
+
 ## Viewing the site
 
 Run `python3 serve.py 5000` and open http://localhost:5000/. The pages are plain files, but links use clean URLs (`/services`, `/klein-mirsky`, `/` for home), so a server that maps `/services` to `services.html` is needed. `serve.py` does that, serves `404.html` with a real 404 status for unknown paths, and is what the Replit preview runs.

@@ -14,7 +14,7 @@ Nothing on the public site shows a placeholder. Missing details are hidden until
 ## 2. Wire the practices (assets/departments.js)
 - [ ] **Klein Real Estate portal URL** (`portal`). The nav, home quick access, practice page, and contact page all light up from this one field.
 - [ ] **Sign-up URLs** for each practice (`signup`) from TaxDome Settings > Client signup. See `TAXDOME-SETUP.md`.
-- [ ] **Inquiry endpoint**: create a form at formspree.io (or one per practice) and set `formEndpoint`. Until then the form confirms on screen and sends nothing.
+- [ ] **Inquiry endpoint**: create a form at formspree.io (or one per practice) and set `formEndpoint`. Until then the form confirms on screen and sends nothing. The step-by-step plan is in `README.md` under "How the inquiry form will send".
 - [ ] **Booking pages** (`schedule`) per practice, from TaxDome scheduling or Calendly. Until set, "Schedule a consultation" shows a request-a-time form that posts to the practice's form endpoint.
 - [ ] Optional: `pay` URLs if invoices are paid somewhere other than the portal.
 - [ ] Optional: per-practice `message` URLs so "Message a department" goes straight to that practice's TaxDome inbox.
