@@ -97,11 +97,12 @@
       });
     }
     // Active state by current path
-    var here = location.pathname.split("/").pop() || "index.html";
+    function pageKey(p) { p = (p || "").split("#")[0].split("?")[0].replace(/\/$/, "").split("/").pop().replace(/\.html$/, ""); return p === "index" ? "" : p; }
+    var here = pageKey(location.pathname);
     qsa("a[href]", nav).forEach(function (a) {
       var href = a.getAttribute("href");
       if (!href || href.charAt(0) === "#" || /^https?:/i.test(href)) return;
-      if (href.split("/").pop().split("?")[0] === here) a.classList.add("active");
+      if (pageKey(href) === here) a.classList.add("active");
     });
   })();
 
@@ -154,9 +155,9 @@
     switch (action) {
       case "portal": return isConfigured(d.portal) ? d.portal : null;
       case "pay": return isConfigured(d.pay) ? d.pay : (isConfigured(d.portal) ? d.portal : null);
-      case "signup": return isConfigured(d.signup) ? d.signup : "contact.html" + q + "#inquiry";
-      case "schedule": return isConfigured(d.schedule) ? d.schedule : "schedule.html" + q + "#request";
-      case "message": return isConfigured(d.message) ? d.message : "contact.html" + q + "#inquiry";
+      case "signup": return isConfigured(d.signup) ? d.signup : "/contact" + q + "#inquiry";
+      case "schedule": return isConfigured(d.schedule) ? d.schedule : "/schedule" + q + "#request";
+      case "message": return isConfigured(d.message) ? d.message : "/contact" + q + "#inquiry";
       case "page": return d.page;
     }
     return null;
@@ -178,7 +179,7 @@
         if (external && !sameTab) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); } else { a.removeAttribute("target"); if (external) a.setAttribute("rel", "noopener"); else a.removeAttribute("rel"); }
       } else {
         // No URL: no practice chosen yet, or this practice has no portal yet.
-        var fallback = d ? "contact.html?division=" + d.id + "#inquiry" : ((action === "portal" || action === "pay") ? "login.html" : "portal.html");
+        var fallback = d ? "/contact?division=" + d.id + "#inquiry" : ((action === "portal" || action === "pay") ? "/login" : "/portal");
         a.setAttribute("href", fallback);
         var disable = !!d || a.hasAttribute("data-firm-require");
         a.classList.toggle("is-disabled", disable); if (disable) a.setAttribute("aria-disabled", "true"); else a.removeAttribute("aria-disabled");
@@ -192,7 +193,7 @@
       if (!d) return;
       el.innerHTML = isConfigured(d.portal)
         ? "You will sign in on " + esc(d.name) + "'s own secure login page. This website never sees your password."
-        : esc(d.name) + "'s online portal is not open yet. Please <a href=\"contact.html?division=" + esc(d.id) + "#inquiry\" style=\"color:var(--green-700); font-weight:600;\">contact the practice</a> for documents and messages.";
+        : esc(d.name) + "'s online portal is not open yet. Please <a href=\"/contact?division=" + esc(d.id) + "#inquiry\" style=\"color:var(--green-700); font-weight:600;\">contact the practice</a> for documents and messages.";
     });
     qsa("[data-dept-contact-current]").forEach(function (el) {
       var parts = [];
@@ -267,7 +268,7 @@
         if (!d) { select.focus(); return; }
         if (d.id !== "general") firmSet(d.id);
         if (isConfigured(d.message)) { window.open(d.message, "_blank", "noopener"); return; }
-        location.href = "contact.html?division=" + encodeURIComponent(d.id) + "#inquiry";
+        location.href = "/contact?division=" + encodeURIComponent(d.id) + "#inquiry";
       });
     });
   })();
@@ -532,10 +533,10 @@
     var progress = qsa(".finder-progress i", root);
     var scores, step;
     var OUT = {
-      "klein-muskat": { tag: "Recommended practice", title: "Klein Muskat", body: "Personal income tax, trusts, and estates. This practice handles individual and family returns, fiduciary filings, and the tax side of transferring wealth.", page: "klein-muskat.html" },
-      "klein-mirsky": { tag: "Recommended practice", title: "Klein Mirsky", body: "Business tax and year-round bookkeeping. This practice keeps the books current and files business returns, payroll, and sales tax for owner-operated companies.", page: "klein-mirsky.html" },
-      "klein-realestate": { tag: "Recommended practice", title: "Klein Real Estate", body: "Tax for investors, partnerships, and property entities: depreciation strategy, exchanges, cost segregation, and investor reporting.", page: "klein-realestate.html" },
-      "multi": { tag: "More than one practice", title: "Coordinated service", body: "Your situation spans more than one practice. Start with a general inquiry and we will bring in the right people from each practice.", page: "contact.html?division=general" }
+      "klein-muskat": { tag: "Recommended practice", title: "Klein Muskat", body: "Personal income tax, trusts, and estates. This practice handles individual and family returns, fiduciary filings, and the tax side of transferring wealth.", page: "/klein-muskat" },
+      "klein-mirsky": { tag: "Recommended practice", title: "Klein Mirsky", body: "Business tax and year-round bookkeeping. This practice keeps the books current and files business returns, payroll, and sales tax for owner-operated companies.", page: "/klein-mirsky" },
+      "klein-realestate": { tag: "Recommended practice", title: "Klein Real Estate", body: "Tax for investors, partnerships, and property entities: depreciation strategy, exchanges, cost segregation, and investor reporting.", page: "/klein-realestate" },
+      "multi": { tag: "More than one practice", title: "Coordinated service", body: "Your situation spans more than one practice. Start with a general inquiry and we will bring in the right people from each practice.", page: "/contact?division=general" }
     };
     function reset() {
       scores = { "klein-muskat": 0, "klein-mirsky": 0, "klein-realestate": 0 };
@@ -557,7 +558,7 @@
       qs("p", result).textContent = o.body;
       qs(".fr-primary", result).setAttribute("href", o.page);
       var deptId = pick === "multi" ? "general" : pick;
-      qs(".fr-contact", result).setAttribute("href", deptId === "general" ? "contact.html?division=general#inquiry" : "schedule.html?division=" + deptId);
+      qs(".fr-contact", result).setAttribute("href", deptId === "general" ? "/contact?division=general#inquiry" : "/schedule?division=" + deptId);
       if (deptId !== "general") firmSet(deptId);
       questions.forEach(function (q) { q.classList.remove("active"); });
       progress.forEach(function (p) { p.classList.add("done"); });
