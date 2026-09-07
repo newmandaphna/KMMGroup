@@ -1,4 +1,4 @@
-# KMM Tax Group launch checklist
+# KMM CPA Group launch checklist
 
 Work top to bottom. Anything on the site shown as `[ ... ]` is a placeholder waiting on you. Search the project for `[ ` to find them all.
 

@@ -1,6 +1,6 @@
-# KMM Tax Group
+# KMM CPA Group
 
-Marketing website for **KMM Tax Group**, a firm of three specialized tax practices:
+Marketing website for **KMM CPA Group**, an accounting firm with three practices, each its own company:
 
 - **Klein Muskat**, personal income tax, trusts, and estates
 - **Klein Mirsky**, business tax and year-round bookkeeping

@@ -506,12 +506,12 @@
         var items = deadlinesFor(y).concat(deadlinesFor(y + 1)).filter(function (x) { return x.date >= t; });
         var pad = function (n) { return (n < 10 ? "0" : "") + n; };
         var fmt = function (d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); };
-        var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//KMM Tax Group//Tax Calendar//EN", "CALSCALE:GREGORIAN"];
+        var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//KMM CPA Group//Tax Calendar//EN", "CALSCALE:GREGORIAN"];
         items.forEach(function (x, i) {
           var end = new Date(x.date); end.setDate(end.getDate() + 1);
           lines.push("BEGIN:VEVENT", "UID:kmm-" + fmt(x.date) + "-" + i + "@kmmcpagroup.com", "DTSTAMP:" + fmt(t) + "T000000Z",
             "DTSTART;VALUE=DATE:" + fmt(x.date), "DTEND;VALUE=DATE:" + fmt(end),
-            "SUMMARY:" + x.what.replace(/,/g, "\\,"), "DESCRIPTION:" + x.detail.replace(/,/g, "\\,") + " (KMM Tax Group tax calendar)", "END:VEVENT");
+            "SUMMARY:" + x.what.replace(/,/g, "\\,"), "DESCRIPTION:" + x.detail.replace(/,/g, "\\,") + " (KMM CPA Group tax calendar)", "END:VEVENT");
         });
         lines.push("END:VCALENDAR");
         var blob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
