@@ -170,19 +170,30 @@
     qsa("[data-firm-action]").forEach(function (a) {
       var url = firmUrl(d, a.getAttribute("data-firm-action"));
       var external = url && /^https?:/i.test(url);
+      var action = a.getAttribute("data-firm-action");
+      var sameTab = a.hasAttribute("data-firm-same-tab");
       if (url) {
         a.setAttribute("href", url);
         a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled");
-        if (external) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); } else { a.removeAttribute("target"); a.removeAttribute("rel"); }
+        if (external && !sameTab) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); } else { a.removeAttribute("target"); if (external) a.setAttribute("rel", "noopener"); else a.removeAttribute("rel"); }
       } else {
-        a.setAttribute("href", d ? "contact.html?division=" + d.id + "#inquiry" : "portal.html");
-        a.classList.toggle("is-disabled", !!d); if (d) a.setAttribute("aria-disabled", "true"); else a.removeAttribute("aria-disabled");
+        // No URL: no practice chosen yet, or this practice has no portal yet.
+        var fallback = d ? "contact.html?division=" + d.id + "#inquiry" : ((action === "portal" || action === "pay") ? "login.html" : "portal.html");
+        a.setAttribute("href", fallback);
+        var disable = !!d || a.hasAttribute("data-firm-require");
+        a.classList.toggle("is-disabled", disable); if (disable) a.setAttribute("aria-disabled", "true"); else a.removeAttribute("aria-disabled");
         a.removeAttribute("target"); a.removeAttribute("rel");
       }
       var note = qs("[data-firm-note]", a);
       if (note) note.textContent = !d ? "Choose a practice first" : (url ? (external ? "Opens " + d.name + "'s secure portal" : "") : "Coming soon for " + d.name);
     });
     qsa("[data-firm-when]").forEach(function (el) { el.hidden = (el.getAttribute("data-firm-when") === "set") ? !d : !!d; });
+    qsa("[data-firm-note-portal]").forEach(function (el) {
+      if (!d) return;
+      el.innerHTML = isConfigured(d.portal)
+        ? "You will sign in on " + esc(d.name) + "'s own secure login page. This website never sees your password."
+        : esc(d.name) + "'s online portal is not open yet. Please <a href=\"contact.html?division=" + esc(d.id) + "#inquiry\" style=\"color:var(--green-700); font-weight:600;\">contact the practice</a> for documents and messages.";
+    });
     qsa("[data-dept-contact-current]").forEach(function (el) {
       var parts = [];
       if (d && d.phone) parts.push('<a href="tel:' + d.phone.replace(/[^\d+]/g, "") + '">' + esc(d.phone) + "</a>");
