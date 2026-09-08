@@ -75,6 +75,10 @@ Later options: a Zapier or Make webhook that creates the lead in TaxDome, or poi
 
 Run `python3 serve.py 5000` and open http://localhost:5000/. The pages are plain files, but links use clean URLs (`/services`, `/klein-mirsky`, `/` for home), so a server that maps `/services` to `services.html` is needed. `serve.py` does that, serves `404.html` with a real 404 status for unknown paths, and is what the Replit preview runs.
 
+## Design
+
+The look is "Evergreen editorial": a dark green header and page head on every page, Cormorant Garamond for headlines, numerals, and dates, Inter for everything else, brass for actions on green and green for actions on white. Both typefaces are served from `assets/fonts`. The stylesheet is layered in dated revisions; the last block (Revision 4) is the current look and overrides what came before it.
+
 ## URLs
 
 Every page is reachable at its file name without the extension: `/services`, `/services/`, and `/services.html` all serve the same page, and the canonical URL in the page head is the clean form. In production the Replit static deployment does this through the `[[deployment.rewrites]]` rules at the end of `.replit`, which the page build regenerates from the page list. Asset paths are root-relative (`/assets/...`) so the trailing-slash form works too. Keep in-site links in the clean form (`href="/contact?division=klein-mirsky#inquiry"`); the `page` field in `assets/departments.js` uses the same form.
