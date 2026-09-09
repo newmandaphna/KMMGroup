@@ -45,7 +45,7 @@
 </div>
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="/" class="logo logo--light" aria-label="KMM CPA Group home"><img src="/assets/kmm-logo-light.png" alt="KMM CPA Group" width="480" height="223"></a>
+    <a href="/" class="logo logo--h" aria-label="KMM CPA Group home"><img src="/assets/kmm-logo-h-light.png" alt="KMM CPA Group" width="1000" height="117"></a>
     <ul class="nav-main" id="navMain">
       <li class="has-menu">
         <button type="button" aria-haspopup="true">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="caret"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -108,9 +108,20 @@
       <h1>Federal tax calendar, <span data-cal-year>this year and next</span></h1>
       <p class="lede">Filing and payment deadlines for calendar-year taxpayers. Dates that fall on a weekend or federal holiday roll to the next business day, as the IRS does. Filter by practice, and add the dates to your own calendar.</p>
       <div class="actions">
-        <button class="btn btn-light" type="button" data-ics>Add to my calendar (.ics)</button>
+        <button class="btn btn-light" type="button" data-ics id="get-calendar">Add to my calendar (.ics)</button>
         <a class="btn-outline" href="/year-end-tax-checklist" style="color:#fff; border-color:rgba(255,255,255,0.5);">Year-end checklist</a>
       </div>
+      <form class="cal-gate" id="calGate" method="post" action="#" novalidate hidden>
+        <p class="cal-gate-h">Where should we send the calendar?</p>
+        <div class="row">
+          <label for="cal-email" class="visually-hidden">Email address</label>
+          <input type="email" id="cal-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+          <input type="hidden" name="source" value="tax-calendar">
+          <input type="hidden" name="consent" value="deadline reminders and planning notes">
+          <button class="btn" type="submit">Download the calendar</button>
+        </div>
+        <small>The .ics file downloads right away and adds every date to Google, Outlook, or Apple Calendar. You will also get our deadline reminders and planning notes, a few times a year. Unsubscribe any time.</small>
+      </form>
     </div>
   </section>
   <section class="section">

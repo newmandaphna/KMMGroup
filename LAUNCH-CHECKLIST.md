@@ -9,6 +9,10 @@ Nothing on the public site shows a placeholder. Missing details are hidden until
 - [ ] **Leadership**: `about.html` has a leadership section switched off inside an HTML comment (search for `LEADERSHIP`). Add real names, titles, credentials, and photographs, then remove the comment wrapper. The single biggest trust signal on an accounting site.
 - [ ] **Founding story**: add a paragraph where the comment in `about.html` marks the spot.
 - [ ] **Fees answer**: add the "How are your fees structured?" question to the FAQ on `contact.html` when there is a plain answer.
+- [ ] **Photographs**: one wide photograph for the home hero (`firm.heroImage`), one for the About page, and one per practice (`KMM.config.photos`). They should show what the group does: people at desks with clients, the office, the street door. No stock.
+- [ ] **Client quotes**: three short quotes with name and role, with written permission, into `KMM.config.testimonials`.
+- [ ] **Newsletter endpoint**: `newsletterEndpoint` (Mailchimp, Formspree, or your email platform's form URL). The calendar download and the footer signup both post to it, which is how the marketing list gets built.
+- [ ] Optional: **live chat** (`KMM.config.chat`) if you take a chat tool; TaxDome has no ticketing, so the message form and chat are the two routes.
 - [ ] **Careers inbox**: `careersEmail` in `assets/departments.js` makes the "Email a resume" button appear. To post a role, uncomment the roles block in `careers.html`.
 
 ## 2. Wire the practices (assets/departments.js)

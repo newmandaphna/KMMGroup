@@ -47,7 +47,21 @@ window.KMM.config = {
   /* Newsletter signup endpoint (Formspree, Mailchimp, etc.). Blank = confirmation only. */
   newsletterEndpoint: "",
   /* Careers inbox shown on the Careers page. */
-  careersEmail: ""
+  careersEmail: "",
+  /* Client quotes for the home page. Each needs the client's written permission.
+     { quote: "...", name: "Jane Doe", role: "Owner, Example Bakery" } */
+  testimonials: [],
+  /* Photographs. Each slot is hidden until a file is set. Paths are relative to the site root.
+     { src: "assets/photos/office.jpg", alt: "The partners in the Brooklyn office", caption: "" } */
+  photos: {
+    about: { src: "", alt: "", caption: "" },
+    "klein-muskat": { src: "", alt: "", caption: "" },
+    "klein-mirsky": { src: "", alt: "", caption: "" },
+    "klein-realestate": { src: "", alt: "", caption: "" }
+  },
+  /* Live chat widget (Intercom, Crisp, Tidio, HubSpot). Paste the provider's script URL, or the whole
+     snippet as inline code. Loaded on every page when set. */
+  chat: { scriptUrl: "", inline: "" }
 };
 
 window.KMM.departments = [
