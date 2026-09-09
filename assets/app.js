@@ -354,6 +354,38 @@
     });
   })();
 
+  /* ---------- Client quotes (home) ---------- */
+  (function () {
+    var sec = qs("[data-testimonials]"), list = qs("[data-testimonials-list]");
+    if (!sec || !list) return;
+    var items = (CONFIG.testimonials || []).filter(function (t) { return t && t.quote && t.name; });
+    if (!items.length) { sec.hidden = true; return; }
+    list.innerHTML = items.slice(0, 3).map(function (t) {
+      return '<figure class="quote"><blockquote>' + esc(t.quote) + '</blockquote><figcaption><strong>' + esc(t.name) + '</strong>' + (t.role ? '<span>' + esc(t.role) + '</span>' : '') + '</figcaption></figure>';
+    }).join("");
+    sec.hidden = false;
+  })();
+
+  /* ---------- Photograph slots ---------- */
+  (function () {
+    var photos = CONFIG.photos || {};
+    qsa("[data-photo]").forEach(function (fig) {
+      var ph = photos[fig.getAttribute("data-photo")];
+      if (!ph || !isConfigured(ph.src)) { fig.hidden = true; return; }
+      var img = qs("img", fig), cap = qs("figcaption", fig);
+      img.src = ph.src; img.alt = ph.alt || "";
+      if (cap) { cap.textContent = ph.caption || ""; cap.hidden = !ph.caption; }
+      fig.hidden = false;
+    });
+  })();
+
+  /* ---------- Live chat widget ---------- */
+  (function () {
+    var chat = CONFIG.chat || {};
+    if (isConfigured(chat.scriptUrl)) { var sc = document.createElement("script"); sc.src = chat.scriptUrl; sc.async = true; document.body.appendChild(sc); }
+    if (isConfigured(chat.inline)) { var inl = document.createElement("script"); inl.textContent = chat.inline; document.body.appendChild(inl); }
+  })();
+
   /* ---------- Insights filter ---------- */
   (function () {
     var bar = qs("[data-insight-filter]");
@@ -501,8 +533,10 @@
     render();
     // .ics export of upcoming deadlines
     var ics = qs("[data-ics]");
-    if (ics) {
-      ics.addEventListener("click", function () {
+    var gate = qs("#calGate");
+    var KEY = "kmm.calendar";
+    function unlocked() { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+    function download() {
         var items = deadlinesFor(y).concat(deadlinesFor(y + 1)).filter(function (x) { return x.date >= t; });
         var pad = function (n) { return (n < 10 ? "0" : "") + n; };
         var fmt = function (d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); };
@@ -518,7 +552,23 @@
         var url = URL.createObjectURL(blob);
         var a = document.createElement("a"); a.href = url; a.download = "kmm-tax-calendar.ics"; document.body.appendChild(a); a.click();
         setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 500);
+    }
+    if (ics) {
+      ics.addEventListener("click", function () {
+        if (!gate || unlocked()) { download(); return; }
+        gate.hidden = false; var em = qs("input[type=email]", gate); if (em) em.focus();
       });
+    }
+    if (gate) {
+      gate.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!gate.reportValidity()) return;
+        var done = function () { try { localStorage.setItem(KEY, "1"); } catch (err) {} gate.hidden = true; download(); };
+        if (!isConfigured(CONFIG.newsletterEndpoint)) { done(); return; }
+        var btn = qs("button[type=submit]", gate); if (btn) btn.disabled = true;
+        fetch(CONFIG.newsletterEndpoint, { method: "POST", body: new FormData(gate), headers: { Accept: "application/json" } }).then(done).catch(done);
+      });
+      if (location.hash === "#get-calendar" && !unlocked()) { gate.hidden = false; }
     }
   })();
 

@@ -83,6 +83,13 @@ The look is "Evergreen editorial": a dark green header and page head on every pa
 
 Every page is reachable at its file name without the extension: `/services`, `/services/`, and `/services.html` all serve the same page, and the canonical URL in the page head is the clean form. In production the Replit static deployment does this through the `[[deployment.rewrites]]` rules at the end of `.replit`, which the page build regenerates from the page list. Asset paths are root-relative (`/assets/...`) so the trailing-slash form works too. Keep in-site links in the clean form (`href="/contact?division=klein-mirsky#inquiry"`); the `page` field in `assets/departments.js` uses the same form.
 
+## Slots that light up when you fill them in
+
+- **Photographs**: `KMM.config.photos` in `assets/departments.js` holds one slot for the About page and one per practice page; the home hero uses `KMM.config.firm.heroImage`. Each stays hidden until a file path is set.
+- **Client quotes**: `KMM.config.testimonials` (quote, name, role). The home page shows up to three under "What clients say" and hides the section when the list is empty. Get written permission for each.
+- **Live chat**: `KMM.config.chat` takes a provider's script URL or inline snippet (Intercom, Crisp, Tidio, HubSpot) and loads it on every page.
+- **Calendar download**: the "Add to my calendar" button on the tax calendar asks for an email address before the `.ics` file downloads, posts it to `KMM.config.newsletterEndpoint` when one is set, and remembers the visitor so they are not asked twice. The home page's deadline widget links straight to it.
+
 ## Before launch
 
 Nothing on the public site shows placeholder text; details that are not filled in yet are simply hidden. The list of what to fill in is in `LAUNCH-CHECKLIST.md`.
